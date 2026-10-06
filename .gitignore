@@ -1,0 +1,28 @@
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.data/
+
+# Node
+node_modules/
+.next/
+dist/
+out/
+*.tsbuildinfo
+
+# Build / logs
+build/
+*.log

@@ -5,10 +5,15 @@
 Read, in order:
 1. `docs/PRD.md`
 2. `docs/ARCHITECTURE.md`
-3. `docs/RULES.md`
-4. `docs/PHASES.md`
-5. `docs/DESIGN.md`
-6. `docs/MEMORY.md`
+3. `docs/TECHSPEC.md`
+4. `docs/APPFLOW.md`
+5. `docs/SCHEMA.md`
+6. `docs/RULES.md`
+7. `docs/PHASES.md`
+8. `docs/IMPLEMENTATIONPLAN.md`
+9. `docs/TRACKER.md`
+10. `docs/DESIGN.md`
+11. `docs/MEMORY.md`
 
 ## Rules
 

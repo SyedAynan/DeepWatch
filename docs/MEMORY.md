@@ -8,6 +8,10 @@
 - 2026-10-07: repository scaffolded — `docs/` context system (PRD, ARCHITECTURE,
   RULES, PHASES, DESIGN, MEMORY), README, .gitignore, `CLAUDE.md`; git initialized
   with the scaffold commit.
+- 2026-10-07: doc set extended — added TECHSPEC, APPFLOW, SCHEMA,
+  IMPLEMENTATIONPLAN, TRACKER (all TODO templates, consistent with Phase 0);
+  updated `CLAUDE.md` read order, README links, and this file.
+  prd/design/rules already existed, so no duplicates were created.
 
 ## Important decisions
 - Docs-first workflow (see `CLAUDE.md`, `docs/RULES.md`).

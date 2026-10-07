@@ -1,11 +1,11 @@
 # PHASES.md — Development Roadmap
 
-**Status:** Phase 0 — not started
+**Status:** Phase 0 — in progress (direction narrowing)
 **Updated:** 2026-10-07
 
 | Phase | Objective | Status |
 | --- | --- | --- |
-| 0 — Definition | Turn the user's brief into a complete PRD; pick the stack | NOT STARTED |
+| 0 — Definition | Landscape scan, IEEE base paper, PRD, stack decision | IN PROGRESS (scan done; awaiting base paper + direction pick) |
 | 1 — Scaffold | Code skeleton, tooling, a runnable test command | NOT STARTED |
 | 2+ | TODO — split per PRD once defined | NOT STARTED |
 

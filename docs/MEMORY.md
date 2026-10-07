@@ -28,8 +28,5 @@
 - None applicable yet (no code).
 
 ## Next recommended step
-- User gives the brief → fill `docs/PRD.md` → decide the stack → plan Phase 1.
-
-## Next recommended step
-(replaced 2026-10-07) Provide the IEEE base paper and choose D1/D2/D3, then:
+Provide the IEEE base paper and choose D1/D2/D3 (docs/RESEARCH.md), then:
 fill `docs/PRD.md` → verify novelty on IEEE Xplore → decide stack → plan Phase 1.

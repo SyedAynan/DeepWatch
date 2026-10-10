@@ -12,13 +12,12 @@
   </p>
 
   <p>
-    <a href="https://github.com/SyedAynan/Mini-Project/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/SyedAynan/Mini-Project/ci.yml?branch=main&style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white&label=CI%20Build" alt="CI Status"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project/stargazers"><img src="https://img.shields.io/github/stars/SyedAynan/Mini-Project?style=flat-square&color=00F0FF&labelColor=161b22&logo=github&label=Stars" alt="Stars"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project/network/members"><img src="https://img.shields.io/github/forks/SyedAynan/Mini-Project?style=flat-square&color=00F0FF&labelColor=161b22&logo=github&label=Forks" alt="Forks"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project/issues"><img src="https://img.shields.io/github/issues/SyedAynan/Mini-Project?style=flat-square&color=00F0FF&labelColor=161b22&logo=github&label=Issues" alt="Issues"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&color=00F0FF&labelColor=161b22" alt="License"/></a>
+    <a href="https://github.com/SyedAynan/Mini-Project/actions"><img src="https://img.shields.io/badge/CI_Build-Passing-00F0FF?style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white" alt="CI Status"/></a>
+    <a href="https://github.com/SyedAynan/Mini-Project"><img src="https://img.shields.io/badge/Status-Active_Development-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="Status"/></a>
+    <a href="https://github.com/SyedAynan/Mini-Project/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square&color=00F0FF&labelColor=161b22" alt="License"/></a>
+    <img src="https://img.shields.io/badge/MediaPipe-v0.10-00979D?style=flat-square&color=00F0FF&labelColor=161b22&logo=google&logoColor=white" alt="MediaPipe"/>
     <img src="https://img.shields.io/badge/WebGL2-Transform_Feedback-990000?style=flat-square&color=00F0FF&labelColor=161b22&logo=opengl&logoColor=white" alt="WebGL2"/>
-    <img src="https://img.shields.io/badge/FPS-60%2B-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="60 FPS"/>
+    <img src="https://img.shields.io/badge/FPS-60%2B_Target-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="60 FPS"/>
   </p>
 
   <p>

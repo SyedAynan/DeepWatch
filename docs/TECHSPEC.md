@@ -44,7 +44,7 @@ files, per-environment differences
 TODO — provider, purpose, auth method, cost/limits, offline fallback
 
 **Git & GitHub:** Git tracks changes; GitHub hosts the private repository at
-https://github.com/SyedAynan/amber-orbit-7c4f9a. These are already in use.
+https://github.com/SyedAynan/Mini-Project. These are already in use.
 
 ## 6. Error handling & logging
 TODO — strategy, log format, what is never logged (secrets, PII)

@@ -1,0 +1,32 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve the project
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the issue...
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior.
+      placeholder: |
+        1. Open camera page
+        2. Move hand near top-left...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Details
+      description: OS, Browser, Node.js version, GPU details.
+      placeholder: Windows 11, Chrome 125, Nvidia RTX 3060

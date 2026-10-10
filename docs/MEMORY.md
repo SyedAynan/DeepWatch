@@ -5,6 +5,7 @@
 **Current task:** user supplies the IEEE base paper + picks direction D1–D3 (see docs/RESEARCH.md)
 
 ## Completed
+- 2026-10-10: upgraded GitHub repository showcase — created custom cyber neon header banner (`assets/banner.png`), wrote comprehensive showcase `README.md` with interactive architecture diagrams and technology badges, and added full GitHub open-source scaffolding (`LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `.github/workflows/ci.yml`, issue/PR templates).
 - 2026-10-10: recorded the user-selected technology stack in README,
   ARCHITECTURE, and TECHSPEC. Git and GitHub are already in use; application
   technologies are selected but not yet implemented or configured.

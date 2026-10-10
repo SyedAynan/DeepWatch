@@ -1,15 +1,21 @@
 # ARCHITECTURE.md — Mini Project
 
-**Status:** Awaiting PRD — TODO throughout; no technology is chosen without justification
+**Status:** Technology stack selected; system architecture awaits the PRD
 **Created:** 2026-10-07
 
 ## 1. System overview
 TODO
 
 ## 2. Technology stack
-TODO — every choice needs a WHY. Machine already has: Python 3.14 + uv,
-Node 24 + npm, Next.js 16 / React 19 experience, Docker Desktop, JDK 21.
-Prefer those unless the project needs otherwise.
+Selected by the user: JavaScript, HTML5 & CSS3, MediaPipe Hand Landmarker,
+WebGL2, GPU Particle Rendering, WebGL Transform Feedback, Computer Vision,
+Node.js, Playwright, and Git & GitHub.
+
+Existing machine tooling remains recorded: Python 3.14 + uv, Node 24 + npm,
+Next.js 16 / React 19 experience, Docker Desktop, and JDK 21.
+
+Roles and implementation status are documented in `TECHSPEC.md`. Component
+boundaries and data flow remain TODO pending the PRD.
 
 ## 3. Data model / storage
 TODO

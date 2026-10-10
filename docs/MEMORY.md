@@ -1,10 +1,13 @@
 # MEMORY.md — Project State
 
-**Last updated:** 2026-10-07
+**Last updated:** 2026-10-10
 **Current phase:** 0 — project definition (IN PROGRESS)
 **Current task:** user supplies the IEEE base paper + picks direction D1–D3 (see docs/RESEARCH.md)
 
 ## Completed
+- 2026-10-10: recorded the user-selected technology stack in README,
+  ARCHITECTURE, and TECHSPEC. Git and GitHub are already in use; application
+  technologies are selected but not yet implemented or configured.
 - 2026-10-07: repository scaffolded — `docs/` context system (PRD, ARCHITECTURE,
   RULES, PHASES, DESIGN, MEMORY), README, .gitignore, `CLAUDE.md`; git initialized
   with the scaffold commit (8552ed9).
@@ -19,7 +22,9 @@
 
 ## Important decisions
 - Docs-first workflow (see `CLAUDE.md`, `docs/RULES.md`).
-- No stack or requirements chosen yet — nothing invented; unknowns stay TODO.
+- Selected stack: JavaScript, HTML5 & CSS3, MediaPipe Hand Landmarker, WebGL2,
+  GPU Particle Rendering, WebGL Transform Feedback, Computer Vision, Node.js,
+  Playwright, and Git & GitHub. Product requirements remain TODO.
 
 ## Known issues / blockers
 - None. "Project undefined" is the current state, not a problem.
@@ -29,4 +34,4 @@
 
 ## Next recommended step
 Provide the IEEE base paper and choose D1/D2/D3 (docs/RESEARCH.md), then:
-fill `docs/PRD.md` → verify novelty on IEEE Xplore → decide stack → plan Phase 1.
+fill `docs/PRD.md` → verify novelty on IEEE Xplore → plan Phase 1 using the selected stack.

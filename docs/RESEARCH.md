@@ -87,6 +87,34 @@ angles. Accuracy figures are as reported by the papers (verify before citing).
 - *Pima Indians comparative study, 2025* — best NN 78.57%.
   **Gap: multimodal fusion + calibrated confidence on public datasets.**
 
+### 5d. Fresh-direction scan (2026-10-14 — avoiding senior-covered topics)
+
+User said the four areas in §5c were already done by seniors. Goal: a FRESH
+topic lecturers won't have seen. Scanned two newer areas:
+
+**AI-generated text detection** (catching ChatGPT-written content) —
+very hot, but base papers report weak/near-chance accuracy (CrisisFake 2026:
+detectors AUROC 0.40–0.52 on real posts), so it's risky/hard to show a clean win.
+
+**Speech deepfake / scam-call voice detection** — strong, fresh, and timely:
+- *DuRe-ST (2026)* — 25.9% relative EER reduction over XLSR-AASIST on ASVspoof.
+- *UZH-CL at ArA-DF 2026* — prompt-tuned foundation model, 1.04–1.96% EER.
+- *Codec-shift residuals (2026)* — 54.2% EER reduction; robustness to real
+  phone-call audio compression is the open gap.
+- *Multilingual frozen SSL (2026)* — In-the-Wild EER 26.5% vs 46.8%.
+
+**Key insight / gap:** most detectors are trained on clean lab audio (ASVspoof)
+and degrade badly on real phone/compressed calls. A project that detects AI
+scam-call voices **robustly on real, compressed, multilingual (e.g.
+Indian-accent) audio** is fresh, socially relevant (phone scams are rising),
+and has a clear measurable improvement (EER/accuracy on real-world audio).
+
+**RECOMMENDED FRESH DIRECTION: Real-world AI scam-call voice detection.**
+Base paper: a 2026 speech-deepfake detection paper (DuRe-ST or UZH-CL).
+Contribution: improve robustness/accuracy on compressed, real phone-call audio
+(and optionally Indian-accent speech), plus a simple demo that flags a live or
+recorded call as real vs AI.
+
 ### 5a. Earlier biosignal scan (reference)
 
 | # | Direction | Novelty claim | Feasibility | Risk |

@@ -47,8 +47,11 @@ core contribution (the AI/ML method, not just the plumbing).
 
 ## 5. Candidate novel directions
 
-Each scored for novelty-vs-crowdedness, feasibility (student, public datasets,
-Python/Node, no special hardware), and IEEE-base-paper fit.
+> **Note (2026-10-14):** The D1–D4 scan below was for a biosignal/medical
+> direction. The stack selected by the user (MediaPipe + WebGL2) points at the
+> **hand-gesture recognition** direction instead — see §5b for the current scan.
+
+### 5a. Earlier biosignal scan (superseded by the hand-gesture direction)
 
 | # | Direction | Novelty claim | Feasibility | Risk |
 | --- | --- | --- | --- | --- |
@@ -57,15 +60,40 @@ Python/Node, no special hardware), and IEEE-base-paper fit.
 | D3 | **Label-efficient personalization under drift** — few-label per-user adaptation of a biosignal model with drift detection (extends the EEG-style approach to cardiac/PPG) | Personalization benchmarks exist for EEG/gait; cardiac/PPG + drift angle less covered | Medium-high | Needs solid evaluation methodology |
 | D4 | Contactless radar vitals | Hot but hardware-heavy | Low (budget) | Skip unless hardware available |
 
+### 5b. Hand-gesture direction scan (2026-10-14, arXiv listing — current stack fit)
+
+Base-paper candidates in the MediaPipe hand-gesture space, with reported
+accuracy where stated:
+
+| Candidate (title, year) | What it does | Reported accuracy | Why it fits / gap to beat |
+| --- | --- | --- | --- |
+| **Dynamic LIBRAS Gesture Recognition via CNN over Spatiotemporal Matrix** (2026) | MediaPipe Hand Landmarker (21 kp) → CNN over a 90×21 spatiotemporal matrix; 11 gestures, home automation | 95% low light / 92% normal | **Strongest fit.** Single architecture; clear delta: add temporal model (LSTM/Transformer) + landmark normalization to push low-light/normal accuracy up |
+| Mediapipe and CNNs for Real-Time ASL Gesture Recognition (2023) | MediaPipe features → CNN, ASL alphabet | 99.95% | High bar; hard to claim an "improvement" — avoid as a base |
+| Enhancing Sign Language Detection through Mediapipe + CNN (2024) | MediaPipe + CNN, ASL | 99.12% (withdrawn for revisions) | Withdrawn — not a safe base paper |
+| SLRNet: Real-Time LSTM Sign Language Recognition (2025) | MediaPipe Holistic + LSTM, letters + functional words | 86.7% | **Good beatable bar.** Clear delta: better features/architecture to exceed 86.7% |
+| GRLib: Open-Source HGR Library (2023) | MediaPipe landmarks, static+dynamic gestures; beats MediaPipe Solutions on 3 datasets | none stated | Tooling, not a benchmark — use as a library reference, not a base |
+| Hand tracking for clinical applications (GMH / GMH-D) (2023) | Validates MediaPipe Hands vs gold standard; depth-enhanced variant improves spatial accuracy | qualitative | Good model for an "accuracy-improvement" framing, but clinical — needs equipment/participants |
+
+**Recommended base-paper direction:** a MediaPipe landmarks → CNN (or
+LSTM/Transformer) **dynamic gesture recognition** paper, with the project's
+contribution being a measurable accuracy/robustness improvement (temporal
+modeling, landmark normalization, low-light augmentation) plus the WebGL2
+real-time visualization. Avoid the 99%+ ASL papers as bases (no headroom);
+avoid the withdrawn paper entirely.
+
 ## 6. Verification checklist (before Phase 1 build)
 
 - [ ] User supplies IEEE base paper; record in §1
-- [ ] IEEE Xplore / Scopus search on the chosen direction's exact keywords (D1–D3)
+- [ ] IEEE Xplore / Scopus search on the chosen direction's exact keywords
 - [ ] Confirm no 2025–2026 paper already does the exact contribution
 - [ ] Record the delta vs base paper in PRD §"novelty statement"
 
-## 7. Sources (2026-10-07 scan)
+## 7. Sources
 
-- arXiv eess.SP recent: https://arxiv.org/list/eess.SP/recent
-- arXiv cs.LG recent: https://arxiv.org/list/cs.LG/recent
-- arXiv cs.AI recent: https://arxiv.org/list/cs.AI/recent
+- 2026-10-07: arXiv eess.SP / cs.LG / cs.AI recent listings
+  (https://arxiv.org/list/eess.SP/recent etc.)
+- 2026-10-14: arXiv API query "MediaPipe AND gesture recognition"
+  (http://export.arxiv.org/api/query)
+- Note: IEEE Xplore blocks automated access (HTTP 418), so IEEE-specific
+  novelty must be verified manually at https://ieeexplore.ieee.org before
+  locking the topic.

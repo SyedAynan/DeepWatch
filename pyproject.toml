@@ -1,0 +1,64 @@
+[project]
+name = "deepwatch"
+version = "0.1.0"
+description = "Unified multimodal deepfake forensics and generation-method attribution platform"
+readme = "README.md"
+authors = [
+    { name = "Syed Ayan", email = "188637542+SyedAynan@users.noreply.github.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "torch>=2.2",
+    "torchvision>=0.17",
+    "timm>=0.9",
+    "opencv-python>=4.9",
+    "numpy>=1.26",
+    "pillow>=10.0",
+    "librosa>=0.10",
+    "soundfile>=0.12",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "sqlalchemy>=2.0",
+    "reportlab>=4.0",
+    "pydantic>=2.6",
+    "python-multipart>=0.0.9",
+    "tqdm>=4.66",
+    "scikit-learn>=1.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "ruff>=0.3",
+]
+
+# CUDA-enabled PyTorch wheels for the RTX 3050 A (cu128, torch 2.9.x +
+# torchvision 0.24.x/0.25.x/0.26.x all match torch 2.9). CPU-only installs can
+# simply remove this source entry and let torch resolve from PyPI.
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+
+[project.scripts]
+deepwatch = "deepwatch.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

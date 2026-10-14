@@ -26,3 +26,11 @@ out/
 # Build / logs
 build/
 *.log
+
+# DeepWatch data (evidence + run artifacts + local db — never commit)
+data/evidence/
+data/runs/
+data/analysis_log.db
+data/datasets/
+*.egg-info/
+research/

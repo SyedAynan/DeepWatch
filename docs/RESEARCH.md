@@ -288,11 +288,13 @@ avoid the withdrawn paper entirely.
   (https://arxiv.org/list/eess.SP/recent etc.)
 - 2026-10-14: arXiv API query "MediaPipe AND gesture recognition"
   (http://export.arxiv.org/api/query)
-- Note on IEEE access (updated 2026-10-14): IEEE Xplore blocks plain bot
-  requests (HTTP 418), BUT a browser User-Agent header gets HTTP 200 — the
-  search page and proceedings pages load. However, search RESULTS are
-  JavaScript-rendered (not in the HTML), so titles can't be scraped with curl.
-  Practical paths: (a) search manually on https://ieeexplore.ieee.org through
-  the college library login and paste titles here, or (b) confirm IEEE venue of
-  arXiv-found papers via Crossref (api.crossref.org) which is not blocked.
-  arXiv remains the primary discovery source; IEEE Xplore verifies the venue.
+- Note on IEEE access (updated 2026-10-14): IEEE Xplore's anti-bot is layered.
+  A browser User-Agent gets HTTP 200 on the search shell, but document pages
+  return HTTP 202 with a JavaScript challenge (PerimeterX-style), and PDF
+  downloads require institutional login. CONFIRMED: IEEE full text cannot be
+  scraped from this environment. Working paths: (a) arXiv HTML/PDF for content
+  (most IEEE/CVF papers have free arXiv versions with identical content),
+  (b) OpenAlex/Crossref APIs for venue verification and citation data,
+  (c) manual IEEE Xplore via the college library for anything paywalled.
+  Verified example: UCF (ICCV 2023) has DOI 10.1109/ICCV51070.2023.02048
+  (genuine IEEE publication) AND a free arXiv copy (2304.13949).

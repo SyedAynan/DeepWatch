@@ -1,81 +1,86 @@
-# TECHSPEC.md — Technical Specification
+# TECHSPEC.md — Technical Specification (DeepWatch)
 
-**Status:** Stack and tooling decisions recorded; dependency versions pinned at scaffold time
+**Status:** Stack decided for DeepWatch; dependency versions pinned at scaffold time
 **Created:** 2026-10-07
 **Updated:** 2026-10-14
-**Role:** concrete technology choices. `ARCHITECTURE.md` owns system shape
-(components, data flow, folder structure); this file owns stack details.
+**Role:** concrete technology choices. `ARCHITECTURE.md` owns system shape;
+this file owns stack details.
+
+> Supersedes the earlier placeholder stack (MediaPipe/WebGL2), which the user
+> confirmed was never a real choice.
 
 ## 1. Runtimes & languages
-- **JavaScript (ES2022+, ES modules):** application language for browser logic and
-  Node.js tooling. `"type": "module"` in package.json; `.js` files only — no
-  TypeScript (keep the mini-project build-free).
-- **HTML5 & CSS3:** document structure and visual styling.
-- **Node.js:** development tooling and test runner. Local machine has Node 24;
-  CI runs Node 20. **Project baseline: Node ≥ 20** (`engines` field).
+- **Python 3.11+ (uv-managed):** all ML/training/inference code. Machine has
+  Python 3.14 + uv; project pins ≥ 3.11 for ML-ecosystem compatibility.
+- **JavaScript/TypeScript or plain HTML/JS:** minimal web frontend for
+  upload/visualisation (decision deferred to Phase 3 — plain JS preferred to
+  keep build-free).
+- **Node 20+:** only if a JS toolchain is needed for the frontend.
 
-Package manager: **npm** (ships with Node; no extra tooling needed).
-Browser target: **WebGL2-capable evergreen browsers** (Chrome/Edge/Firefox;
-WebGL2 is required for transform feedback — no WebGL1 fallback planned).
+Package manager: **uv** for Python (fast, lockfile-reproducible); npm for any JS.
 
 ## 2. Frameworks & key libraries
-The user selected the following technologies. Planned roles:
 
-| Technology | Planned role / reason |
+| Technology | Role / reason |
 | --- | --- |
-| MediaPipe Hand Landmarker (`@mediapipe/tasks-vision`) | Detect 21 hand landmarks per hand for interaction |
-| WebGL2 | Browser GPU graphics API; required for transform feedback |
-| GPU Particle Rendering | Technique: particle state updated in vertex shaders |
-| WebGL Transform Feedback | Capture vertex shader outputs back into VBOs (GPU-only particle updates) |
-| Computer Vision | Domain: interpreting hand landmarks as control signals |
-| Playwright (`@playwright/test`) | Headless browser E2E tests and frame-latency checks |
+| PyTorch (+ torchvision) | Model training/inference; base papers' reference code is PyTorch |
+| timm / pretrained backbones (Xception, ConvNeXt, ResNet) | Detection and attribution backbones matching base papers [1][3] |
+| OpenCV + ffmpeg | Video frame extraction, audio extraction, compression augmentation |
+| librosa / torchaudio | Speech anti-spoofing feature extraction (ASVspoof protocol) |
+| MediaPipe or dlib (face crop) | Face-region extraction for detection/attribution inputs |
+| FastAPI + Uvicorn | Local REST API serving models to the frontend |
+| ReportLab / WeasyPrint | Forensic PDF report generation |
+| SQLite (via SQLAlchemy or stdlib) | Analysis-log storage (append-only audit trail) |
+| hashlib (stdlib) | SHA-256 evidence hashing (FR-01) |
+| Grad-CAM / saliency utilities | Explanation heatmaps (D4) |
+| pytest | Unit/integration tests |
 
-GPU Particle Rendering and Computer Vision are techniques/domains, not packages.
-Exact dependency versions are pinned in `package.json` at scaffold time (Phase 1).
-MediaPipe model assets are loaded from CDN or vendored — decide in Phase 1.
+Exact versions pinned in `pyproject.toml`/`uv.lock` at scaffold time.
 
 ## 3. Build, run, test
-**No build step.** Static HTML/CSS/JS served by a dev server (`npx serve` or a
-tiny Node static server script). Planned npm scripts:
+Planned commands:
 
 | Command | Purpose | Passing means |
 | --- | --- | --- |
-| `npm run dev` | Serve the app locally | App reachable on localhost |
-| `npm test` | Run Playwright E2E suite | All specs pass headless |
-| `npm run lint` | Lint JS (ESLint, flat config) | Zero errors |
-
-Commands are recorded as they are implemented in Phase 1.
+| `uv run api` (or `uvicorn app:api`) | Serve the local API | API answers on localhost |
+| `uv run pytest` | Run test suite | All tests pass |
+| `uv run eval --benchmark ff++` | Reproduce base-paper eval | Metrics computed on the benchmark split |
+| `npm run dev` (if JS UI) | Serve frontend | UI reachable, calls API |
 
 ## 4. Configuration & environment
-Placeholders live in `.env.example`; real values go in `.env` (git-ignored).
-The browser app itself is expected to be config-free; env vars would only serve
-tooling (ports, model asset paths). Per-environment differences: TODO if any arise.
+`.env.example` holds placeholders: model checkpoint paths, dataset root,
+device (cuda/cpu), blockchain testnet endpoint (optional). Real `.env` is
+git-ignored. No secrets are required for core function.
 
-## 5. External services & APIs
-- **Git & GitHub:** version control and hosting (private repo at
-  https://github.com/SyedAynan/Mini-Project). Already in use.
-- **MediaPipe model CDN:** serves the hand-landmarker model weights. No auth.
-  Offline fallback: vendor the model file into `public/models/` — decide in Phase 1.
-- No other external services planned.
+## 5. External services & dependencies
+- **Public datasets (download once, stored locally):** FaceForensics++,
+  Celeb-DF, DFDC, OW-DFA, ASVspoof 2021 LA/DF partitions.
+- **Pretrained backbones:** torchvision/timm checkpoints (public weights).
+- **Optional test blockchain:** public testnet RPC for report-hash anchoring
+  (D5) — optional; platform works without it.
+- No paid services, no API keys for core features.
 
 ## 6. Error handling & logging
-TODO — decided with the PRD. Baseline rule: never log secrets or raw camera
-frames; camera/permission failures must surface as user-visible messages, not
-console-only errors.
+- Every analysis run writes an append-only analysis log (SQLite + file):
+  input hash, model versions, parameters, outputs, timestamps (FR-06).
+- Never log raw user media contents or secrets; log hashes and metadata only.
+- Model failures surface as explicit "analysis failed" states — never silently
+  return a confident-looking default score.
 
 ## 7. Performance targets
-Planned targets (from README, unverified until implementation):
-≥ 60 FPS with 100,000 particles, < 15 ms landmark latency, < 100 MB VRAM,
-< 10% CPU. Playwright frame-latency checks enforce these once built.
+- Single-media analysis < 60 s on student hardware (CPU fallback required).
+- Detection target: ≥ UCF baseline (0.828 mean cross-dataset AUC) on the same
+  benchmarks — improvement is a goal, not a guarantee.
+- Memory: run on ≤ 8 GB VRAM or CPU; batch size 1 acceptable.
 
 ## 8. Key technical decisions
 
 | Decision | Why | Date |
 | --- | --- | --- |
-| Adopt the user-selected stack listed above | Explicit project technology requirement; implementation awaits the PRD | 2026-10-10 |
-| Plain JS + ES modules, no TypeScript/build step | Mini-project scope; browser-native modules remove toolchain complexity | 2026-10-14 |
-| npm (not pnpm/yarn/uv) | Ships with Node; one less tool to install | 2026-10-14 |
-| Node ≥ 20 baseline | Matches CI runner; local Node 24 is forward-compatible | 2026-10-14 |
-| Playwright over Cypress/Puppeteer | User-selected; first-class headless Chromium + frame timing APIs | 2026-10-14 |
+| Python + PyTorch stack | Base papers' reference implementations and the whole deepfake-forensics ecosystem are PyTorch | 2026-10-14 |
+| uv for Python packaging | Fast, lockfile-reproducible; already on the machine | 2026-10-14 |
+| Local-first processing (no cloud APIs) | PRD NFR-04: user media must not leave the device | 2026-10-14 |
+| FastAPI + minimal web UI | Demo needs an upload/visualise surface without a heavy frontend stack | 2026-10-14 |
+| SQLite analysis log | Zero-config append-only audit trail suitable for forensic traceability | 2026-10-14 |
 
 > Rule: every choice needs a why. Never invent capabilities a library doesn't have.

@@ -1,79 +1,93 @@
-# ARCHITECTURE.md — Mini Project
+# ARCHITECTURE.md — DeepWatch
 
-**Status:** Stack + engineering shape recorded; product-level boundaries await the PRD
+**Status:** Architecture defined for DeepWatch (direction locked 2026-10-14)
 **Created:** 2026-10-07
 **Updated:** 2026-10-14
 
 ## 1. System overview
-A browser-based computer-vision application: webcam input is processed by
-MediaPipe Hand Landmarker to produce hand landmark coordinates; those landmarks
-drive a WebGL2 transform-feedback particle simulation rendered to a full-screen
-canvas. All particle physics run on the GPU; the CPU only handles vision input
-and uniform uploads. Exact product features and behaviors await `docs/PRD.md`.
+DeepWatch is a local-first forensic analysis platform for suspected deepfake
+media. A user uploads an image, video, or audio file; the platform preserves
+the original (SHA-256 hash + immutable copy), runs a multi-stage analysis
+pipeline (visual detection, speech anti-spoofing, lip–speech consistency,
+generation-method attribution, explanation), fuses the channel scores into one
+assessment, and emits an explainable forensic PDF report. All processing is
+local; no user media leaves the device.
 
 ## 2. Technology stack
-Selected by the user: JavaScript, HTML5 & CSS3, MediaPipe Hand Landmarker,
-WebGL2, GPU Particle Rendering, WebGL Transform Feedback, Computer Vision,
-Node.js, Playwright, and Git & GitHub.
-
-Existing machine tooling remains recorded: Python 3.14 + uv, Node 24 + npm,
-Next.js 16 / React 19 experience, Docker Desktop, and JDK 21.
-
-Version/runtime decisions are in `TECHSPEC.md`.
+Decided (details in TECHSPEC.md): Python 3.11+ with uv, PyTorch, timm/vision
+backbones (Xception, ConvNeXt), OpenCV + ffmpeg, librosa/torchaudio, FastAPI,
+SQLite (analysis log), ReportLab/WeasyPrint (PDF), minimal HTML/JS frontend,
+pytest. Optional: public test blockchain for report-hash anchoring.
 
 ## 3. Data model / storage
-No persistent storage. Runtime state only: landmark arrays (per frame),
-particle VBO buffers (GPU), and uniform values. Detailed shapes in `SCHEMA.md`
-(awaiting PRD for product entities).
+No cloud database. Local storage only:
+- `evidence/` — preserved original uploads (immutable, hashed)
+- `runs/` — per-analysis artifacts (frames, audio, heatmaps, logs)
+- `analysis_log.db` (SQLite) — append-only audit trail: input hash, model
+  versions, parameters, outputs, timestamps
+- `models/` — model checkpoints with recorded hashes
+
+Key entities: EvidenceItem(hash, path, metadata), AnalysisRun(id, evidence_id,
+channel_scores, fused_score, attribution, status, timestamps),
+ExplanationMap(run_id, kind, artifact_path), Report(run_id, pdf_path,
+report_hash).
 
 ## 4. API / interfaces
-No backend. Internal module interfaces (planned):
-- **Vision module** → exposes per-frame landmark data to the app loop
-- **Simulation module** → accepts landmarks as shader uniforms, owns VBO state
-- **Render module** → draws the current particle buffer each frame
-
-Exact function signatures are defined when the modules are implemented (Phase 1+).
+Local REST (FastAPI), JSON:
+- `POST /analyze` — upload file → returns run_id
+- `GET /runs/{id}` — status + scores + attribution + artifact links
+- `GET /runs/{id}/report.pdf` — forensic report
+- `GET /runs/{id}/explain` — heatmap assets + plain-language reasons
+Internal module boundaries:
+- `ingest/` — hashing, preservation, metadata, media splitting (frames/audio)
+- `detect/` — visual detection model (after UCF [1])
+- `audio/` — speech anti-spoofing (ASVspoof protocol [4])
+- `sync/` — lip–speech consistency
+- `attribute/` — open-set attribution (after OW-DFA/CPL [3])
+- `fuse/` — score fusion + calibrated confidence
+- `explain/` — heatmaps + plain-language reasons
+- `report/` — forensic PDF + optional hash anchoring
 
 ## 5. Folder structure
-Planned scaffold (created in Phase 1):
-
 ```
-├── index.html              # entry point
-├── src/
-│   ├── main.js             # app loop & wiring
-│   ├── vision/             # MediaPipe hand tracking
-│   ├── sim/                # WebGL2 transform feedback particle sim
-│   ├── render/             # draw pass & shaders wiring
-│   └── ui/                 # DOM overlays (status, errors, controls)
-├── public/
-│   ├── shaders/            # .glsl files (update + draw)
-│   └── models/             # vendored MediaPipe model (if not CDN)
-├── tests/e2e/              # Playwright specs
-├── docs/                   # this documentation system
-├── assets/                 # repo branding (banner, screenshots)
-└── package.json
+├── pyproject.toml / uv.lock        # Python project, reproducible env
+├── src/deepwatch/
+│   ├── ingest/  detect/  audio/  sync/  attribute/  fuse/  explain/  report/
+│   ├── api/                        # FastAPI app
+│   └── models/                     # checkpoint registry + hashes
+├── web/                            # minimal upload/visualise UI
+├── data/
+│   ├── evidence/  runs/            # preserved inputs + run artifacts
+│   └── datasets/                   # FF++, Celeb-DF, DFDC, OW-DFA, ASVspoof
+├── tests/                          # pytest unit + integration tests
+├── docs/                           # this documentation system
+└── assets/                         # repo branding
 ```
 
 ## 6. External services & dependencies
-- MediaPipe model CDN (or vendored model) — hand landmarker weights; no auth.
-- GitHub — repo hosting and CI. Already in use.
-- No backend, database, or paid services planned.
+- Public datasets (one-time download, stored locally).
+- torchvision/timm pretrained weights (public).
+- Optional test-blockchain RPC (report-hash anchoring; platform works without).
+- No paid services; no API keys required for core function.
 
 ## 7. Security considerations
-- Camera access requires a secure context (https or localhost) and explicit
-  user permission; denial must be handled gracefully.
-- No raw camera frames leave the device; only derived landmark coordinates are
-  used in-process.
-- No secrets in the repo; `.env` is git-ignored.
+- Local-first: user media never leaves the device (PRD NFR-04).
+- Originals preserved immutable; all processing on copies.
+- Analysis log is append-only; model checkpoint hashes recorded to guarantee
+  result reproducibility.
+- API binds to localhost only by default.
+- No PII collection; filenames may be pseudonymised to hashes in logs.
 
 ## 8. Scalability considerations
-Client-side only; scalability is per-device GPU capacity. Particle count will be
-adaptive (drop to fewer particles on weak GPUs) — confirm against PRD targets.
+Single-user local tool by design. Compute scales with model size; CPU fallback
+required, GPU optional. Future: batch-mode scanning for a folder of media.
 
 ## 9. Key decisions and why
 
 | Decision | Why | Date |
 | --- | --- | --- |
 | Docs-first context system | project stays understandable across chats, sessions, and AI tools | 2026-10-07 |
-| No backend / static-only hosting | CV + GPU sim run entirely client-side; zero infra cost | 2026-10-14 |
-| GPU-only particle updates via transform feedback | CPU particle loops bottleneck ~5k particles; VBO ping-pong scales to 100k+ | 2026-10-14 |
+| Local-first, no cloud | forensic use case demands media stays on-device | 2026-10-14 |
+| PyTorch + published base methods | reproducibility against base papers' public code/benchmarks | 2026-10-14 |
+| Append-only SQLite audit log | forensic traceability without infra cost | 2026-10-14 |
+| Fuse audio + video | real fake video calls carry both channels; unimodal tools miss half the evidence | 2026-10-14 |

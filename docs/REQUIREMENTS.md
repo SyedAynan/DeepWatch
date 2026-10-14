@@ -1,29 +1,27 @@
-# REQUIREMENTS.md — What Must Be Supplied Before Phase 1
+# REQUIREMENTS.md — External Inputs Status
 
-**Status:** OPEN — project cannot start until every item below is resolved
+**Status:** CLOSED — all required inputs supplied 2026-10-14
 **Created:** 2026-10-14
-**Role:** single, obvious list of external inputs this project is waiting on.
-Everything here is a decision only the user can make — never invent answers.
+**Role:** record of the external decisions this project waited on.
 
-## Required inputs
+## Resolved inputs
 
-| # | Item | Why it's needed | Where it goes once supplied | Status |
-| --- | --- | --- | --- | --- |
-| 1 | **Project title** | Identity for README, PRD, repo description, all docs | README.md, docs/PRD.md, docs/MEMORY.md | TODO |
-| 2 | **IEEE base paper** | Anchor for novelty positioning and literature grounding | docs/RESEARCH.md, docs/PRD.md | TODO |
-| 3 | **Direction pick (D1 / D2 / D3 or new)** | Determines what the PRD specifies; see docs/RESEARCH.md | docs/PRD.md, docs/PHASES.md | TODO |
+| # | Item | Resolution |
+| --- | --- | --- |
+| 1 | Project title | **DeepWatch** — unified multimodal deepfake forensics and generation-method attribution platform |
+| 2 | IEEE base papers | Four verified IEEE/CVF papers: UCF (ICCV 2023), up-sampling artifacts (CVPR 2024), OW-DFA/CPL (ICCV 2023), ASVspoof 2021 (IEEE/ACM TASLP). Recorded in PRD §10 and RESEARCH.md §1 |
+| 3 | Direction pick | Deepfake forensics — chosen over saturated topics after cross-domain scan (docs/RESEARCH.md) |
 
-## Blocked until resolved
+## Remaining user-side formality (non-blocking)
 
-- `docs/PRD.md` — problem statement, users, goals/non-goals, FRs/NFRs, success criteria
-- `docs/APPFLOW.md`, `docs/SCHEMA.md`, `docs/IMPLEMENTATIONPLAN.md` — all marked "Awaiting PRD"
-- Phase 1 scaffold (code skeleton, package.json, tooling) — cannot pick shape before the PRD
+- Verify the four base papers are downloadable via IEEE Xplore through the
+  college library login (venues are confirmed IEEE/CVF; access is expected to
+  be fine — record confirmation in RESEARCH.md when done).
 
-## Notes
+## Unblocked artifacts (all now filled)
 
-- The currently selected stack (JavaScript, HTML5/CSS3, MediaPipe Hand Landmarker,
-  WebGL2, Transform Feedback, Node.js, Playwright) is recorded in
-  `docs/ARCHITECTURE.md` and `docs/TECHSPEC.md` and assumed stable unless the
-  direction pick changes it.
-- Once items 1–3 are supplied, this file should be marked CLOSED and the PRD
-  filled in a single pass.
+- `docs/PRD.md` — full DeepWatch PRD
+- `docs/ARCHITECTURE.md`, `docs/TECHSPEC.md` — real stack (Python/PyTorch/FastAPI)
+- `docs/PHASES.md`, `docs/IMPLEMENTATIONPLAN.md`, `docs/TRACKER.md` — Phases 1–4
+- `docs/APPFLOW.md`, `docs/SCHEMA.md`, `docs/DESIGN.md` — filled during
+  Phase 3 (UI/report work), per plan

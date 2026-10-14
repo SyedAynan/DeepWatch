@@ -8,17 +8,22 @@
 
 ## Phase 1 — Scaffold + baseline detector
 
-**Objective:** reproducible env + visual detection baseline on FaceForensics++.
-**Depends on:** — (engineering-only)
+**Objective:** reproducible env + visual detection baseline evaluated on a
+public deepfake benchmark, reproducing base-paper-style AUC metrics.
+**Depends on:** — (engineering-only). **Audit note (2026-10-14):** FF++ access
+is gated behind a Google-form agreement (can take ~1 week) and no local GPU was
+detected — so Phase 1 bootstraps on **DeepfakeBench** (NeurIPS 2023, already
+implements UCF + eval protocols, CC BY-NC-4.0) and more-open datasets
+(DFDC/DF40), while the user submits the FF++ request in parallel.
 
 | # | Task | Files (expected) | Acceptance / verification |
 | --- | --- | --- | --- |
 | 1.1 | uv project init: pyproject, deps (torch, timm, opencv, fastapi, pytest) | `pyproject.toml`, `uv.lock` | `uv sync` clean; `uv run pytest` runs |
 | 1.2 | Project skeleton per ARCHITECTURE §5 | `src/deepwatch/*` packages | imports resolve; placeholder tests pass |
-| 1.3 | Dataset bootstrap: FF++ download instructions + manifest loader | `data/datasets/`, `ingest/datasets.py` | loader enumerates real/fake samples |
+| 1.3 | Dataset bootstrap: DeepfakeBench preprocessed data / DFDC manifest loader (FF++ added when access arrives) | `data/datasets/`, `ingest/datasets.py` | loader enumerates real/fake samples |
 | 1.4 | Ingest + hashing: preserve original, SHA-256, metadata log | `ingest/hasher.py`, `ingest/preserve.py` | uploaded file copied + hash logged |
-| 1.5 | Baseline detector: Xception backbone, face-crop preprocessing | `detect/model.py`, `detect/pipeline.py` | single image → score via CLI |
-| 1.6 | Eval harness: AUC on FF++ split | `eval/benchmark.py` | prints numeric AUC on the split |
+| 1.5 | Baseline detector: DeepfakeBench Xception/UCF config + pretrained weights (CPU inference) | `detect/model.py`, `detect/pipeline.py` | single image → score via CLI |
+| 1.6 | Eval harness: AUC on benchmark split, honest baseline numbers | `eval/benchmark.py` | prints numeric AUC on the split |
 
 ## Phase 2 — Fusion + attribution
 

@@ -1,4 +1,8 @@
-# Mini Project
+# DeepWatch (Mini Project)
+
+Unified multimodal deepfake forensics and generation-method attribution
+platform — detects manipulated media, attributes the generation method,
+explains evidence, and issues integrity-protected forensic reports.
 
 ## Workflow (before every coding task)
 

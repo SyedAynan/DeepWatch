@@ -1,35 +1,33 @@
 <div align="center">
 
-  <img src="assets/banner.png" alt="Mini Project Cyber Banner" width="100%" />
+  <img src="assets/banner.png" alt="DeepWatch Banner" width="100%" />
 
   <br/>
   <br/>
 
-  <h1>🖐️ Mini-Project: Real-Time WebGL2 & MediaPipe GPU Particle Engine</h1>
+  <h1>🔍 DeepWatch — Unified Deepfake Forensics & Attribution Platform</h1>
 
   <p>
-    <strong>Next-generation browser computer vision platform driving GPU-accelerated particle physics via MediaPipe Hand Landmarker and WebGL2 Transform Feedback</strong>
+    <strong>Multimodal AI forensic lab that detects manipulated media, attributes the generation method, explains the evidence, and issues integrity-protected forensic reports</strong>
   </p>
 
   <p>
     <a href="https://github.com/SyedAynan/Mini-Project/actions"><img src="https://img.shields.io/badge/CI_Build-Passing-00F0FF?style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white" alt="CI Status"/></a>
     <a href="https://github.com/SyedAynan/Mini-Project"><img src="https://img.shields.io/badge/Status-Active_Development-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="Status"/></a>
     <a href="https://github.com/SyedAynan/Mini-Project/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square&color=00F0FF&labelColor=161b22" alt="License"/></a>
-    <img src="https://img.shields.io/badge/MediaPipe-v0.10-00979D?style=flat-square&color=00F0FF&labelColor=161b22&logo=google&logoColor=white" alt="MediaPipe"/>
-    <img src="https://img.shields.io/badge/WebGL2-Transform_Feedback-990000?style=flat-square&color=00F0FF&labelColor=161b22&logo=opengl&logoColor=white" alt="WebGL2"/>
-    <img src="https://img.shields.io/badge/FPS-60%2B_Target-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="60 FPS"/>
+    <img src="https://img.shields.io/badge/PyTorch-Deepfake_Detection-EE4C2C?style=flat-square&color=00F0FF&labelColor=161b22&logo=pytorch&logoColor=white" alt="PyTorch"/>
+    <img src="https://img.shields.io/badge/Base-IEEE%2FCVF%20ICCV%202023-990000?style=flat-square&color=00F0FF&labelColor=161b22&logo=ieee&logoColor=white" alt="IEEE ICCV"/>
+    <img src="https://img.shields.io/badge/Forensics-Evidence_Preserving-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="Forensics"/>
   </p>
 
   <p>
-    <a href="#-about-the-project">About</a> &bull;
-    <a href="#-key-features">Key Features</a> &bull;
+    <a href="#-the-problem">Problem</a> &bull;
+    <a href="#-what-deepwatch-does">What It Does</a> &bull;
     <a href="#-architecture--pipeline">Architecture</a> &bull;
-    <a href="#-interactive-gesture-math">Gesture Math</a> &bull;
-    <a href="#-performance-benchmarks">Performance</a> &bull;
+    <a href="#-base-papers--novelty">Base Papers</a> &bull;
     <a href="#-tech-stack">Tech Stack</a> &bull;
-    <a href="#-docs-first-architecture">Documentation</a> &bull;
-    <a href="#-github-repository-features">GitHub Features</a> &bull;
-    <a href="#-getting-started">Getting Started</a>
+    <a href="#-docs-first-architecture">Docs</a> &bull;
+    <a href="#-roadmap">Roadmap</a>
   </p>
 
 </div>
@@ -39,204 +37,172 @@
 ---
 
 > [!IMPORTANT]
-> **Docs-First Architecture:** This repository enforces strict documentation discipline (`PRD.md`, `TECHSPEC.md`, `ARCHITECTURE.md`, `MEMORY.md`). All system design changes are captured in specification documents before implementation.
+> **Docs-First Architecture:** This repository enforces strict documentation discipline (`PRD.md`, `TECHSPEC.md`, `ARCHITECTURE.md`, `MEMORY.md`). All system design changes are captured in specification documents before implementation. The full research proposal is at [`docs/DeepWatch-Report.pdf`](docs/DeepWatch-Report.pdf).
 
 ---
 
-## 📌 About The Project
+## ⚠️ The Problem
 
-**Mini-Project** is a high-performance computer vision and GPU rendering system designed to turn real-time hand movements into fluid 3D particle physics directly in the browser.
+Generative AI can now fabricate convincing faces, voices, and videos in minutes — and it is being used for real crime: voice-clone scam calls, fabricated videos of private individuals, and unverifiable digital "evidence." Yet today's research tools each solve only a fragment of the problem:
 
-By capturing **21 hand landmark coordinates per hand** via **MediaPipe Hand Landmarker**, the engine transforms 2D camera streams into dynamic force vectors. These vectors are fed into a **WebGL2 Transform Feedback pipeline**, updating 100,000+ particle states entirely on the GPU without CPU processing bottlenecks.
+- **Detectors** output a bare probability — no explanation, trained on clean lab data
+- **Attribution methods** identify which tool made a fake — but only for faces
+- **Speech anti-spoofing** checks the audio — but is never fused with video
+- **No published system** produces evidence a victim can hand to police or a platform
 
-> [!NOTE]
-> **Why Transform Feedback?** Traditional canvas particle systems process coordinates on the CPU thread, bottlenecking around 5,000 particles. WebGL2 Transform Feedback writes shader output directly back into VBOs (Vertex Buffer Objects), allowing 100,000+ particles to update at a rock-solid 60 FPS.
+DeepWatch closes that gap: **one platform that detects, attributes, explains, and documents.**
 
 <br/>
 
-## 🚀 Key Features
+## 🔍 What DeepWatch Does
 
-| Category | Feature | Description | Tech Stack |
-| :--- | :--- | :--- | :--- |
-| 🖐️ **Vision** | **21 Landmark Tracking** | Sub-millisecond tracking of joint coordinates, velocity vectors, and hand rotation | MediaPipe Hand Landmarker |
-| ⚡ **GPU Render** | **Transform Feedback Physics** | Zero-copy VBO updates executed entirely within WebGL2 vertex shaders | GLSL, WebGL2 |
-| 🧲 **Interactivity** | **Dynamic Force Fields** | Attractors, repellors, vortex whirls, and fluid drift attached to fingertips | Vector Calculus Shaders |
-| 🧪 **Automation** | **Playwright E2E Suite** | Headless browser integration testing & frame latency regression checks | Playwright, Node.js |
-| 🎨 **Aesthetics** | **Cyber Neon VFX** | Dynamic color gradients based on particle speed, age, and proximity to hand joints | Custom CSS3 & WebGL |
+| Component | Feature | Answers base-paper gap |
+| :--- | :--- | :--- |
+| **D1** | Visual deepfake detection (common-forgery features, after UCF) | Cross-dataset degradation + no explanation |
+| **D2** | Audio–video fusion (speech anti-spoofing + lip-sync check) | Unimodal audio/visual evaluation |
+| **D3** | Open-set generation-method attribution with abstention | Face-only, closed-set attribution |
+| **D4** | Explainable evidence — artifact heatmaps + plain-language reasons | Opaque bare-score outputs |
+| **D5** | Forensic PDF report — SHA-256 hashed, integrity-logged, optional blockchain anchor | No usable evidence output |
+
+> [!NOTE]
+> **Honest framing:** DeepWatch outputs are *indicators supporting an assessment*, not definitive proof. All claims are evaluated against the base papers' published benchmarks.
 
 <br/>
 
 ## 🏗️ Architecture & Pipeline
 
-### 1. Data & Processing Flowchart
+### 1. Forensic Analysis Pipeline
 
 ```mermaid
 flowchart TD
-    subgraph Capture ["1. Computer Vision Input"]
-        A[📷 1080p Web Camera] --> B[🧠 MediaPipe Landmarker Worker]
-        B --> C[📍 21 Hand Joint Coordinates]
+    subgraph Ingest ["1. Evidence Ingest (Integrity-First)"]
+        A[📁 Media Upload] --> B[🔐 SHA-256 Hash + Immutable Copy]
+        B --> C[📋 Append-Only Analysis Log]
     end
 
-    subgraph Math ["2. Force Vector Engine"]
-        C --> D[📐 Calculate Velocity & Distance Vectors]
-        D --> E[🧲 Generate Attractor/Repellor Uniforms]
+    subgraph Analysis ["2. Multimodal Analysis"]
+        C --> D[🖼️ Visual Detector<br/>common-forgery features]
+        C --> E[🔊 Speech Anti-Spoofing<br/>ASVspoof protocol]
+        C --> F[👄 Lip–Speech<br/>Consistency]
     end
 
-    subgraph GPU ["3. WebGL2 Transform Feedback Pipeline"]
-        E --> F[⚡ Vertex Shader: Update Position & Velocity]
-        F --> G[💾 Swap VBO Buffers via Transform Feedback]
-        G --> H[🖌️ Fragment Shader: Render Cyber Glow Particles]
+    subgraph Reason ["3. Attribution & Explanation"]
+        D --> G[🧩 Open-Set Attribution<br/>method or 'unseen' abstain]
+        D --> H[🗺️ Artifact Heatmaps<br/>+ plain-language reasons]
     end
 
-    H --> I[🖥️ 60+ FPS Interactive Browser Canvas]
+    D & E & F --> I[⚖️ Fused Verdict + Calibrated Confidence]
+    G --> I
+    I --> J[📄 Forensic PDF Report<br/>hashes + logs + scores]
+    H --> J
+    J --> K[⛓️ Optional: hash anchored<br/>on test blockchain]
 ```
 
-### 2. Sequence Diagram
+### 2. Sequence Flow
 
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Camera as 📷 Web Camera
-    participant MediaPipe as 🧠 MediaPipe Worker
-    participant Math as 🧲 Force Calculation
-    participant GPU as ⚡ WebGL2 GPU
-    participant Canvas as 🖥️ Render Canvas
+    participant User as 👤 User
+    participant API as ⚙️ Local API
+    participant Store as 💾 Evidence Store
+    participant Models as 🧠 Models
+    participant Log as 📋 Audit Log
 
-    Camera->>MediaPipe: Stream Video Frame (60 FPS)
-    MediaPipe->>Math: Extract 21 Landmark Coordinates (x, y, z)
-    Math->>GPU: Upload Uniforms (Fingertip Positions, Force Modes)
-    GPU->>GPU: Transform Feedback Pass (Update 100k VBOs)
-    GPU->>Canvas: Draw Arrays (Fragment Shader Render Pass)
-    Canvas-->>Camera: Next Frame Request (requestAnimationFrame)
+    User->>API: Upload suspicious media
+    API->>Store: SHA-256 hash + preserve original
+    API->>Log: Record ingest event
+    API->>Models: Visual + audio + sync analysis
+    Models-->>API: Channel scores + heatmaps
+    API->>Models: Attribution (open-set)
+    Models-->>API: Method label or 'unseen'
+    API->>Log: Append every step + model versions
+    API-->>User: Fused verdict + explanation + forensic PDF
 ```
 
 <br/>
 
-## 📐 Interactive Gesture Math
+## 📄 Base Papers & Novelty
 
-> [!TIP]
-> **Supported Gestures & Physics Modes:**
-
-<details>
-<summary>🔍 <strong>Click to expand gesture definitions & physics equations</strong></summary>
-
-<br/>
-
-### 1. Index Finger Attractor (Pinch / Point)
-Particles accelerate toward the index fingertip landmark $\vec{P}_{\text{index}}$ following an inverse-square force:
-$$\vec{F}_{\text{attract}} = \frac{G \cdot m_1 m_2}{\|\vec{r}\|^2 + \epsilon} \cdot \hat{r}$$
-
-### 2. Open Palm Repellor (Push Away)
-When all 5 fingertips radiate outward from the palm centroid $\vec{C}_{\text{palm}}$, a high-velocity repulsive field triggers:
-$$\vec{F}_{\text{repel}} = -\frac{K}{\|\vec{r}\|^3 + \epsilon} \cdot \hat{r}$$
-
-### 3. Dual-Hand Vortex (Twist)
-Two active hands establish a cross-product rotational velocity field:
-$$\vec{V}_{\text{vortex}} = \vec{\omega} \times (\vec{P}_{\text{particle}} - \vec{C}_{\text{center}})$$
-
-</details>
-
-<br/>
-
-## 📊 Performance Benchmarks
-
-> [!NOTE]
-> **Planned targets.** Implementation has not started yet — these are the goals
-> the system will be measured against, not recorded results.
-
-| Metric | Target | Measured | Result |
+| Base Paper | Venue | Contribution | Limitation DeepWatch addresses |
 | :--- | :--- | :--- | :--- |
-| **Frame Rate** | $\ge 60 \text{ FPS}$ | — (pending implementation) | :dart: Planned |
-| **Active Particles** | $\ge 50,000$ (goal: 100,000) | — (pending implementation) | :dart: Planned |
-| **Landmark Latency** | $< 15 \text{ ms}$ | — (pending implementation) | :dart: Planned |
-| **VRAM Memory Usage** | $< 100 \text{ MB}$ | — (pending implementation) | :dart: Planned |
-| **CPU Load** | $< 10\%$ | — (pending implementation) | :dart: Planned |
+| **UCF** — Yan et al. | IEEE/CVF ICCV 2023 | Common-forgery-feature detection; 0.996 in-dataset AUC | 0.828 cross-dataset AUC; needs per-method labels; no explanation |
+| **Up-sampling artifacts** — Tan et al. | IEEE/CVF CVPR 2024 | Detects CNN-generator up-sampling artifacts | Tied to CNN artifact classes; unaddressed generator families |
+| **OW-DFA / CPL** — Sun et al. | IEEE/CVF ICCV 2023 | Open-world attribution of unseen forgery methods | Face-only; limited unseen-method accuracy |
+| **ASVspoof 2021** — Liu et al. | IEEE/ACM TASLP 2023 | Standard speech anti-spoofing benchmark | Audio-only; never fused with visual analysis |
+
+**Delta:** detection + attribution + explanation + integrity-protected reporting in one pipeline — a combination absent from the reviewed literature (scoped claim, verified in `docs/RESEARCH.md`).
+
+<br/>
+
+## 🔬 Forensic Integrity
+
+- 🔐 **SHA-256** hashing of every submitted file before analysis
+- 🗄️ **Original media preserved** unmodified; all processing on copies
+- 📋 **Append-only analysis log** — every step, model version, and parameter
+- ⚖️ **False positives and false negatives reported separately** — they cost differently in the real world
+- 🔁 **Reproducible** — code, configs, model hashes, and eval scripts released
+- 🧾 Optional **test-blockchain hash anchoring** (tamper evidence, not truth claims)
 
 <br/>
 
 ## 🛠️ Tech Stack
 
-<div align="left">
-
-- **Application Logic & Web APIs:** ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-Canvas_WebGL2-E34F26?style=flat-square&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-Modern_Flex/Grid-1572B6?style=flat-square&logo=css3&logoColor=white)
-- **Computer Vision & Hand Tracking:** ![MediaPipe](https://img.shields.io/badge/MediaPipe-Hand_Landmarker_v0.10-00979D?style=flat-square&logo=google&logoColor=white)
-- **GPU Shaders & Graphics:** ![WebGL2](https://img.shields.io/badge/WebGL2-GLSL_Shaders-990000?style=flat-square&logo=opengl&logoColor=white)
-- **Testing & Tooling:** ![Node.js](https://img.shields.io/badge/Node.js-v20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white) ![Playwright](https://img.shields.io/badge/Playwright-E2E_Testing-2EAD33?style=flat-square&logo=playwright&logoColor=white) ![Git](https://img.shields.io/badge/Git-GitHub-F05032?style=flat-square&logo=git&logoColor=white)
-
-</div>
+- **ML & Analysis:** ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-Models-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![OpenCV](https://img.shields.io/badge/OpenCV-Frames-5C3EE8?style=flat-square&logo=opencv&logoColor=white) `timm` `librosa` `torchaudio` `ffmpeg`
+- **Baseline Benchmark:** [DeepfakeBench](https://github.com/SCLBD/DeepfakeBench) (NeurIPS 2023 — implements UCF + eval protocols)
+- **API & UI:** FastAPI · minimal HTML/JS frontend
+- **Forensics:** `hashlib` (SHA-256) · SQLite audit log · ReportLab/WeasyPrint (PDF)
+- **Tooling:** uv · pytest · Git & GitHub
 
 <br/>
 
 ## 📚 Docs-First Architecture
 
-This repository maintains a comprehensive 12-document architecture suite. Explore the system design below:
-
-<details>
-<summary>📖 <strong>Click to expand full documentation registry</strong></summary>
-
-<br/>
-
-| Document | File Path | Focus Area |
-| :--- | :--- | :--- |
-| **PRD** | [`docs/PRD.md`](docs/PRD.md) | Product Goals, Non-goals, FR-01..05 & NFR Requirements |
-| **Tech Spec** | [`docs/TECHSPEC.md`](docs/TECHSPEC.md) | Technology choices, GLSL specs, Playwright runner details |
-| **Architecture** | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Component boundaries, VBO memory layout & data flow |
-| **App Flow** | [`docs/APPFLOW.md`](docs/APPFLOW.md) | User interaction states, camera permission fallback & UI flow |
-| **Schema** | [`docs/SCHEMA.md`](docs/SCHEMA.md) | Uniform buffer schema, landmark array structure & state |
-| **Research** | [`docs/RESEARCH.md`](docs/RESEARCH.md) | Computer vision literature review & novelty positioning |
-| **Requirements** | [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md) | External inputs still needed (title, base paper, direction pick) |
-| **Phases** | [`docs/PHASES.md`](docs/PHASES.md) | Step-by-step engineering roadmap (Phase 0 to 4) |
-| **Tracker** | [`docs/TRACKER.md`](docs/TRACKER.md) | Task item completion matrix & verification logs |
-| **Memory** | [`docs/MEMORY.md`](docs/MEMORY.md) | Active sprint log, decisions & next recommended steps |
-
-</details>
-
-<br/>
-
-## ⚙️ GitHub Repository Features
-
-This repository utilizes GitHub's latest ecosystem capabilities:
-
-- 🛡️ **Automated CI/CD:** GitHub Actions workflow executing on every push/PR ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)).
-- 📋 **YAML Issue Forms:** Structured GitHub issue forms for [Bug Reports](.github/ISSUE_TEMPLATE/bug_report.yml) & [Feature Requests](.github/ISSUE_TEMPLATE/feature_request.yml).
-- 🔀 **Pull Request Template:** Standardized PR submission checklist ([`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)).
-- 📜 **Community Standards:** Includes open-source [`LICENSE`](LICENSE), [`CONTRIBUTING.md`](CONTRIBUTING.md), and [`SECURITY.md`](SECURITY.md).
+| Document | Focus |
+| :--- | :--- |
+| [`docs/PRD.md`](docs/PRD.md) | Product requirements — D1–D5 features, FR-01..06, NFR-01..06 |
+| [`docs/DeepWatch-Report.pdf`](docs/DeepWatch-Report.pdf) | 2-page research proposal (base papers, gaps, innovations) |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Forensic pipeline, module boundaries, security model |
+| [`docs/TECHSPEC.md`](docs/TECHSPEC.md) | Stack, datasets, evaluation plan |
+| [`docs/RESEARCH.md`](docs/RESEARCH.md) | Domain scans, base-paper verification, gap analysis |
+| [`docs/IMPLEMENTATIONPLAN.md`](docs/IMPLEMENTATIONPLAN.md) | Phase 1–4 tasks with acceptance criteria |
+| [`docs/TRACKER.md`](docs/TRACKER.md) | Live task progress |
+| [`docs/MEMORY.md`](docs/MEMORY.md) | Sprint log and current state |
 
 <br/>
 
 ## 💻 Getting Started
 
-### Quick Start Commands
-
 ```bash
-# 1. Clone the repository
+# 1. Clone
 git clone https://github.com/SyedAynan/Mini-Project.git
 cd Mini-Project
 
-# 2. Inspect docs and architecture
-head -n 20 docs/TECHSPEC.md
+# 2. Inspect the spec
+head -n 40 docs/PRD.md
 
-# 3. Development setup (once dependencies are configured)
-npm install
-npm test
+# 3. Environment (once Phase 1 scaffold lands)
+uv sync
+uv run pytest
 ```
 
 <br/>
 
 ## 🗺️ Roadmap
 
-- [x] **Phase 0:** Project Scaffolding & Docs-First Specs (`PRD`, `TECHSPEC`, `ARCHITECTURE`)
-- [x] **Phase 0.5:** GitHub Showcase Overhaul (Cyber Header, Shields Badges, CI Workflow, Templates)
-- [ ] **Phase 1:** MediaPipe Hand Landmark Tracking Worker Setup
-- [ ] **Phase 2:** WebGL2 Transform Feedback Shader & VBO Double-Buffering
-- [ ] **Phase 3:** Force Vector Gesture Physics (Attract, Repel, Vortex)
-- [ ] **Phase 4:** Playwright Automated E2E Visual Verification Suite
+- [x] **Phase 0:** Direction, IEEE base papers, gap analysis, PRD, stack, proposal PDF
+- [ ] **Phase 1:** Scaffold + baseline detector on a public benchmark (via DeepfakeBench)
+- [ ] **Phase 2:** Audio anti-spoofing, lip–speech sync, open-set attribution, fusion
+- [ ] **Phase 3:** Explainability heatmaps, forensic PDF, audit log, web UI
+- [ ] **Phase 4:** Honest benchmarking vs baselines (FP/FN separated), demo, docs polish
+
+> ⚠️ **Pending user actions:** IEEE Xplore access check for the 4 base papers; FaceForensics++ download agreement (Google form) submitted.
 
 <br/>
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+Distributed under the **MIT License** for project code. Note: DeepfakeBench baseline code is CC BY-NC-4.0 (non-commercial). See [`LICENSE`](LICENSE).
 
 <br/>
 

@@ -51,6 +51,26 @@ Xplore access to the four base papers in parallel (formality)
 - None applicable yet (no code; Phase 1 not started).
 
 ## Next recommended step
-Start Phase 1 per IMPLEMENTATIONPLAN: uv init → skeleton → FF++ loader →
-ingest+hashing → baseline detector → AUC eval. User checks IEEE access
-in parallel; record DOIs verified in RESEARCH.md §1 when confirmed.
+Start Phase 1 per IMPLEMENTATIONPLAN: uv init → skeleton → ingest+hashing →
+baseline detector via **DeepfakeBench** (which already implements UCF +
+8 more detectors + the FF++/Celeb-DF/DFDC eval protocols). User checks
+IEEE access in parallel; record DOIs verified in RESEARCH.md §1 when confirmed.
+
+## Pre-build audit findings (2026-10-14)
+- **Tooling OK:** Python 3.13.5, uv 0.12.10, ffmpeg 9.0.2, git, Node 24.
+  Torch not installed yet (installs with `uv sync`). Disk: 158 GB free on S:.
+- **No GPU detected** on this machine (nvidia-smi fails) — training must be
+  CPU-realistic or planned around cloud/Colab GPU. Affects Phase 1 scope:
+  baseline reproduction, not from-scratch training.
+- **FF++ access is gated:** Google Form → emailed download script (can take a
+  week). c23 version ≈10 GB, c40 ≈2 GB. Action: user submits the form NOW;
+  meanwhile bootstrap with **DeepfakeBench's preprocessed data links** or the
+  DFDC/DF40 sets which are more open.
+- **DeepfakeBench (NeurIPS 2023, SCLBD, 1.1k stars) already implements UCF**
+  and 35 other detectors, with eval protocols for exactly our datasets — using
+  it as the Phase 1 baseline saves weeks and gives honest baseline numbers.
+  License CC BY-NC-4.0 (fine for academic mini-project, not for commercial).
+- **OW-DFA code:** Sun et al. arXiv:2309.11132 (verify repo exists when starting
+  Phase 2; if none, reimplement CPL per paper).
+- **ASVspoof 2021 data:** requires agreement via the challenge site — same
+  pattern as FF++, request early.

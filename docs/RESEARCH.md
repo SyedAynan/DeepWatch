@@ -47,11 +47,47 @@ core contribution (the AI/ML method, not just the plumbing).
 
 ## 5. Candidate novel directions
 
-> **Note (2026-10-14):** The D1–D4 scan below was for a biosignal/medical
-> direction. The stack selected by the user (MediaPipe + WebGL2) points at the
-> **hand-gesture recognition** direction instead — see §5b for the current scan.
+> **Note (2026-10-14):** The user clarified the previously-recorded
+> MediaPipe/WebGL2 stack was only a placeholder, NOT a real choice. The field
+> is now wide open. §5a (biosignal) and §5b (hand-gesture) are kept for
+> reference; §5c scans four topic areas fresh to find the strongest
+> "best-impression" project. Topic selection is pending the user's decision.
 
-### 5a. Earlier biosignal scan (superseded by the hand-gesture direction)
+### 5c. Cross-area "best impression" scan (2026-10-14, arXiv)
+
+Scanned four areas for strong, beatable base papers with clear improvement
+angles. Accuracy figures are as reported by the papers (verify before citing).
+
+**Area 1 — Deepfake / synthetic-media detection (AI/ML, very hot)**
+- *Adaptive Compression & Targeted Perturbation (audio deepfake), 2026* — SOTA
+  1.51% EER, NeurIPS 2026. Hard to beat.
+- *Explainable Deepfake Detection Challenge 2026 (MSU)* — 0.9349 accuracy,
+  adds VLM-generated explanations. **Gap: explainability is the trend.**
+- *Camera-noise residuals for face-swap, 2026* — negative result (redundant).
+
+**Area 2 — Plant disease detection (Computer Vision, agriculture)**
+- *AgriMind ensemble, 2026* — 99.23% on PlantVillage, 53 FPS. High bar.
+- *PD36-C compact CNN, 2026* — 99.5% test, 4.77 MB, offline app.
+  **Gap: tiny models for edge/mobile.**
+- *Mobile-friendly benchmarking, 2025* — 94.7% on 101 diseases/33 crops.
+- Pattern: ensembles + transfer learning hit 99%+; lightweight/edge is the gap.
+
+**Area 3 — Mental-health / depression detection (AI for social good)**
+- *Dynamic Summary Generation (multimodal), 2026* — LLM clinical summaries,
+  "significant improvements" over SOTA (no number).
+- *Retrieval-Augmented Multimodal, 2025* — CCC 0.593 / MAE 3.95 on AVEC 2019.
+- *GPT-5 long-context benchmark, 2026* — accuracy drops to ~50-53% on 20K posts.
+  **Gap: robustness to long/real-world social-media text.**
+- Ethical sensitivity: needs careful framing (not a diagnostic tool).
+
+**Area 4 — Early disease prediction (Health ML)**
+- *Early T2 Diabetes, tabular transformer, 2026* — ROC AUC ≥ 79.7% (Qatar
+  BioBank). Beatable with public data.
+- *ECG-DiaNet, 2025* — AUROC 0.845 (ECG + clinical).
+- *Pima Indians comparative study, 2025* — best NN 78.57%.
+  **Gap: multimodal fusion + calibrated confidence on public datasets.**
+
+### 5a. Earlier biosignal scan (reference)
 
 | # | Direction | Novelty claim | Feasibility | Risk |
 | --- | --- | --- | --- | --- |
@@ -60,7 +96,7 @@ core contribution (the AI/ML method, not just the plumbing).
 | D3 | **Label-efficient personalization under drift** — few-label per-user adaptation of a biosignal model with drift detection (extends the EEG-style approach to cardiac/PPG) | Personalization benchmarks exist for EEG/gait; cardiac/PPG + drift angle less covered | Medium-high | Needs solid evaluation methodology |
 | D4 | Contactless radar vitals | Hot but hardware-heavy | Low (budget) | Skip unless hardware available |
 
-### 5b. Hand-gesture direction scan (2026-10-14, arXiv listing — current stack fit)
+### 5b. Hand-gesture direction scan (2026-10-14 — reference; stack was a placeholder)
 
 Base-paper candidates in the MediaPipe hand-gesture space, with reported
 accuracy where stated:

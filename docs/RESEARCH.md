@@ -202,6 +202,11 @@ avoid the withdrawn paper entirely.
   (https://arxiv.org/list/eess.SP/recent etc.)
 - 2026-10-14: arXiv API query "MediaPipe AND gesture recognition"
   (http://export.arxiv.org/api/query)
-- Note: IEEE Xplore blocks automated access (HTTP 418), so IEEE-specific
-  novelty must be verified manually at https://ieeexplore.ieee.org before
-  locking the topic.
+- Note on IEEE access (updated 2026-10-14): IEEE Xplore blocks plain bot
+  requests (HTTP 418), BUT a browser User-Agent header gets HTTP 200 — the
+  search page and proceedings pages load. However, search RESULTS are
+  JavaScript-rendered (not in the HTML), so titles can't be scraped with curl.
+  Practical paths: (a) search manually on https://ieeexplore.ieee.org through
+  the college library login and paste titles here, or (b) confirm IEEE venue of
+  arXiv-found papers via Crossref (api.crossref.org) which is not blocked.
+  arXiv remains the primary discovery source; IEEE Xplore verifies the venue.

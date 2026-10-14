@@ -7,24 +7,24 @@ user's official IEEE base paper is recorded here.
 
 ## 1. Base paper (official)
 
-**Direction LOCKED (2026-10-14, final):** OmniShield — Multimodal Scam & Fraud
-Detection Ecosystem. A unified platform detecting scams across voice, text, and
-video, with blockchain-backed tamper-proof reporting. Domains integrated: AI/NN
-+ cybersecurity + computer vision + blockchain + computer networks.
+**Direction LOCKED (2026-10-14, revised):** AI Smart-Contract Vulnerability
+Auditor — an AI system that finds security holes in cross-chain bridge smart
+contracts and explains them. Domains integrated: AI/NN + blockchain +
+cybersecurity + computer networks.
 
-**Candidate base papers (multiple, one per modality):**
-- Voice: "StreamFraudNet" (2026) — incremental phone-scam detection, ROC-AUC 0.9953.
-- Text: phishing/smishing detection (2026) — LLM-based text classification.
-- Video: "Explainable Deepfake Detection Challenge 2026" — 93.5% accuracy + artifact heatmaps.
-- Blockchain: "BVI: Blockchain-Based Verification of Identity Claims" (2026) — on-chain caller credential verification.
+**Candidate base paper:** "Understanding Verification Vulnerabilities in
+Cross-chain Bridges" (Oct 2026, arXiv) — first systematic study of cross-chain
+verification vulnerabilities, built from 588 audit reports across 36 real bridge
+projects; produced an 830-instance dataset over 786 contract files. Best of four
+LLMs reached only 51.2% Macro-F1 vs a 29.3% constant baseline.
 
-**One-sentence gap the project fills:** existing tools detect scams in only ONE
-modality (voice, text, or video) — this project unifies all three into a single
-ecosystem with a fused AI engine, real-time alerts, and blockchain-backed
-tamper-proof reporting.
+**One-sentence gap the project fills:** the base paper catalogs the
+vulnerabilities but its best detector reaches only 51.2% Macro-F1 — this project
+builds a purpose-trained/fine-tuned detector that measurably beats that bar and
+explains each finding in plain language.
 
-**TODO:** user verifies IEEE venues of the base papers manually via IEEE Xplore
-(through college library) or via Crossref, then records DOIs here.
+**TODO:** user verifies IEEE venue of the base paper manually via IEEE Xplore
+(through college library) or via Crossref, then records DOI here.
 
 ## 2. Landscape scan (2026-10-07, arXiv current listings)
 
@@ -214,6 +214,36 @@ and reported metrics:
 4. Explainable verdicts (why the call was flagged)
 5. Low-resource detection (works with few training samples)
 6. Robustness to adversarial attacks (SMIA/DOT bypass current systems)
+
+### 5h. IEEE base-paper shortlist for DeepWatch (2026-10-14, OpenAlex — verified IEEE venues)
+
+Found via OpenAlex title-search with venue verification (IEEE Xplore still blocked
+for scraping, but OpenAlex indexes IEEE publications with venue names).
+
+**Detection (IEEE venues):**
+| Paper | Venue | Year | Citations |
+| --- | --- | --- | --- |
+| UCF: Uncovering Common Features for Generalizable Deepfake Detection (Yan et al.) | IEEE/CVF ICCV | 2023 | 230 |
+| Rethinking the Up-Sampling Operations in CNN-Based Generative Network (Tan et al.) | IEEE/CVF CVPR | 2024 | 210 |
+| Implicit Identity Leakage: Stumbling Block to Improving Deepfake Detection Generalization (Dong et al.) | IEEE/CVF CVPR | 2023 | high |
+| ASVspoof 2021: Towards Spoofed and Deepfake Speech Detection in the Wild (Liu et al.) | IEEE/ACM Trans. Audio, Speech & Language Processing | 2023 | 296 |
+
+**Attribution / forensics (IEEE venues):**
+| Paper | Venue | Year | Citations |
+| --- | --- | --- | --- |
+| Model Attribution of Face-Swap Deepfake Videos (Jia, Li, Lyu) | IEEE ICIP | 2022 | 29 |
+| Contrastive Pseudo Learning for Open-World DeepFake Attribution (Sun et al.) | IEEE/CVF ICCV | 2023 | 27 |
+
+**Surveys (context, not IEEE):** "Deepfake Media Forensics: Status and Future
+Challenges" (2025, 105 citations) and "Deepfake forensics survey" (PeerJ 2024,
+69 citations) — useful for the literature-review chapter of the project report.
+
+**Key insight for DeepWatch:** detection is well-published (ICCV/CVPR), but
+**attribution is thin** — the top IEEE attribution papers have only 27–29
+citations, meaning the field is young and a student contribution is realistic.
+Recommended base-paper pairing: one detection paper (UCF or CVPR 2024) + one
+attribution paper (ICCV 2023 open-world attribution), with the project's delta
+being a unified detect → attribute → explain → report pipeline.
 
 ### 5a. Earlier biosignal scan (reference)
 

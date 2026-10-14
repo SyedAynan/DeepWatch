@@ -140,13 +140,17 @@ $$\vec{V}_{\text{vortex}} = \vec{\omega} \times (\vec{P}_{\text{particle}} - \ve
 
 ## 📊 Performance Benchmarks
 
+> [!NOTE]
+> **Planned targets.** Implementation has not started yet — these are the goals
+> the system will be measured against, not recorded results.
+
 | Metric | Target | Measured | Result |
 | :--- | :--- | :--- | :--- |
-| **Frame Rate** | $\ge 60 \text{ FPS}$ | **60.0 FPS** (1080p display) | :white_check_mark: Exceeds Target |
-| **Active Particles** | $\ge 50,000$ | **100,000 particles** | :white_check_mark: Exceeds Target |
-| **Landmark Latency** | $< 15 \text{ ms}$ | **8.2 ms** (MediaPipe CPU/GPU) | :white_check_mark: Ultra-Low Latency |
-| **VRAM Memory Usage** | $< 100 \text{ MB}$ | **34.2 MB** (VBO Buffer Pair) | :white_check_mark: Lightweight |
-| **CPU Load** | $< 10\%$ | **3.8%** (GPU Offloaded) | :white_check_mark: CPU Free |
+| **Frame Rate** | $\ge 60 \text{ FPS}$ | — (pending implementation) | :dart: Planned |
+| **Active Particles** | $\ge 50,000$ (goal: 100,000) | — (pending implementation) | :dart: Planned |
+| **Landmark Latency** | $< 15 \text{ ms}$ | — (pending implementation) | :dart: Planned |
+| **VRAM Memory Usage** | $< 100 \text{ MB}$ | — (pending implementation) | :dart: Planned |
+| **CPU Load** | $< 10\%$ | — (pending implementation) | :dart: Planned |
 
 <br/>
 
@@ -180,6 +184,7 @@ This repository maintains a comprehensive 12-document architecture suite. Explor
 | **App Flow** | [`docs/APPFLOW.md`](docs/APPFLOW.md) | User interaction states, camera permission fallback & UI flow |
 | **Schema** | [`docs/SCHEMA.md`](docs/SCHEMA.md) | Uniform buffer schema, landmark array structure & state |
 | **Research** | [`docs/RESEARCH.md`](docs/RESEARCH.md) | Computer vision literature review & novelty positioning |
+| **Requirements** | [`docs/REQUIREMENTS.md`](docs/REQUIREMENTS.md) | External inputs still needed (title, base paper, direction pick) |
 | **Phases** | [`docs/PHASES.md`](docs/PHASES.md) | Step-by-step engineering roadmap (Phase 0 to 4) |
 | **Tracker** | [`docs/TRACKER.md`](docs/TRACKER.md) | Task item completion matrix & verification logs |
 | **Memory** | [`docs/MEMORY.md`](docs/MEMORY.md) | Active sprint log, decisions & next recommended steps |

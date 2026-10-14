@@ -13,7 +13,8 @@ Read, in order:
 8. `docs/IMPLEMENTATIONPLAN.md`
 9. `docs/TRACKER.md`
 10. `docs/DESIGN.md`
-11. `docs/MEMORY.md`
+11. `docs/REQUIREMENTS.md`
+12. `docs/MEMORY.md`
 
 ## Rules
 

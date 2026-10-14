@@ -1,10 +1,17 @@
 # MEMORY.md — Project State
 
-**Last updated:** 2026-10-10
+**Last updated:** 2026-10-14
 **Current phase:** 0 — project definition (IN PROGRESS)
-**Current task:** user supplies the IEEE base paper + picks direction D1–D3 (see docs/RESEARCH.md)
+**Current task:** user supplies the project title, IEEE base paper + picks direction D1–D3
+(see docs/RESEARCH.md and docs/REQUIREMENTS.md)
 
 ## Completed
+- 2026-10-14: pre-development workspace audit. Added `.env.example` (config
+  placeholder) and `docs/REQUIREMENTS.md` (single list of inputs the project is
+  waiting on: title, IEEE base paper, direction pick). Corrected the README
+  performance table to mark benchmarks as planned targets, not measured results
+  (no code exists yet). Linked REQUIREMENTS.md from README and CLAUDE.md.
+  LICENSE verified (MIT, 2026 Syed Ayan); CI already passes as a docs check.
 - 2026-10-10: upgraded GitHub repository showcase — created custom cyber neon header banner (`assets/banner.png`), wrote comprehensive showcase `README.md` with interactive architecture diagrams and technology badges, and added full GitHub open-source scaffolding (`LICENSE`, `CONTRIBUTING.md`, `SECURITY.md`, `.github/workflows/ci.yml`, issue/PR templates).
 - 2026-10-10: recorded the user-selected technology stack in README,
   ARCHITECTURE, and TECHSPEC. Git and GitHub are already in use; application

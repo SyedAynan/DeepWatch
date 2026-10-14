@@ -8,16 +8,17 @@
 - [ ] not started · [~] in progress · [x] done (add date) · [!] blocked (add note)
 
 ## Current task
-None. Phase 1 is fully planned and ready — awaiting the user's go-ahead to
-start building (and the user's IEEE Xplore access check, running in parallel).
+Milestone 0 DONE (scaffold + forensic ingest + audit log + tests, 3/3 green).
+CUDA torch wheel resolving (network flaky, in progress). Next: Milestone 1
+baseline detector + eval harness via DeepfakeBench.
 
 ## Phase 1 — Scaffold + baseline detector
-- [ ] 1.1 uv project init (pyproject, deps), `uv sync` clean
-- [ ] 1.2 Package skeleton per ARCHITECTURE §5, imports resolve
-- [ ] 1.3 FF++ dataset bootstrap + manifest loader
-- [ ] 1.4 Ingest + SHA-256 hashing + preservation log
-- [ ] 1.5 Baseline detector (Xception + face crop) → score via CLI
-- [ ] 1.6 Eval harness prints AUC on FF++ split
+- [x] 1.1 uv project init (pyproject, deps), `uv sync` — 2026-10-14 (CUDA wheel resolving)
+- [x] 1.2 Package skeleton per ARCHITECTURE §5 — 2026-10-14
+- [x] 1.4 Ingest + SHA-256 hashing + preservation log — 2026-10-14 (tested)
+- [ ] 1.3 Dataset bootstrap: DeepfakeBench packs / DFDC manifest loader
+- [ ] 1.5 Baseline detector (Xception/UCF via DeepfakeBench) → score via CLI
+- [ ] 1.6 Eval harness prints AUC on benchmark split
 
 ## Phase 2 — Fusion + attribution
 - [ ] 2.1 Audio anti-spoofing channel (ASVspoof protocol)

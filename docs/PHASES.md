@@ -1,12 +1,12 @@
 # PHASES.md — Development Roadmap
 
-**Status:** Phase 0 — in progress (direction narrowing)
-**Updated:** 2026-10-07
+**Status:** Phase 0 — in progress (direction narrowing); Phase 1 planned
+**Updated:** 2026-10-14
 
 | Phase | Objective | Status |
 | --- | --- | --- |
-| 0 — Definition | Landscape scan, IEEE base paper, PRD, stack decision | IN PROGRESS (scan done; awaiting base paper + direction pick) |
-| 1 — Scaffold | Code skeleton, tooling, a runnable test command | NOT STARTED |
+| 0 — Definition | Landscape scan, IEEE base paper, PRD, stack decision | IN PROGRESS (scan done; awaiting title, base paper + direction pick) |
+| 1 — Scaffold | Code skeleton, tooling, a runnable test command | PLANNED (tasks in IMPLEMENTATIONPLAN.md; engineering-only, can start without the PRD) |
 | 2+ | TODO — split per PRD once defined | NOT STARTED |
 
 ## Phase 0 — Project definition

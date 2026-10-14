@@ -6,6 +6,13 @@
 (see docs/RESEARCH.md and docs/REQUIREMENTS.md)
 
 ## Completed
+- 2026-10-14: filled engineering scaffolding that does not depend on the PRD —
+  TECHSPEC (runtime/version/tooling decisions: Node ≥ 20, ES modules, npm, no
+  build step, Playwright), ARCHITECTURE (system overview from the selected
+  stack, planned folder structure, security notes), IMPLEMENTATIONPLAN +
+  TRACKER (Phase 1 runnable-scaffold tasks 1.1–1.6, each with acceptance
+  criteria). APPFLOW/SCHEMA/DESIGN remain TODO — they are PRD-dependent and
+  must not be invented.
 - 2026-10-14: pre-development workspace audit. Added `.env.example` (config
   placeholder) and `docs/REQUIREMENTS.md` (single list of inputs the project is
   waiting on: title, IEEE base paper, direction pick). Corrected the README

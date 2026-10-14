@@ -3,9 +3,8 @@
 **Last updated:** 2026-10-14
 **Current phase:** Research gates 1–6 DONE (blueprint committed); GATE 7 —
 awaiting user approval to start building
-**Current task:** user is enabling the machine GPU, then will approve/ revise
-the research blueprint; on approval start Milestone 0 (uv init + skeleton +
-ingest/hashing + eval harness)
+**Current task:** GPU confirmed (RTX 3050 A, 4 GB) — hardware concern resolved;
+awaiting user's GATE-7 approval of the research blueprint to start Milestone 0
 
 ## Completed
 - 2026-10-14: **PROJECT DEFINED — "DeepWatch"**: a unified multimodal deepfake
@@ -61,9 +60,11 @@ IEEE access in parallel; record DOIs verified in RESEARCH.md §1 when confirmed.
 ## Pre-build audit findings (2026-10-14)
 - **Tooling OK:** Python 3.13.5, uv 0.12.10, ffmpeg 9.0.2, git, Node 24.
   Torch not installed yet (installs with `uv sync`). Disk: 158 GB free on S:.
-- **No GPU detected** on this machine (nvidia-smi fails) — training must be
-  CPU-realistic or planned around cloud/Colab GPU. Affects Phase 1 scope:
-  baseline reproduction, not from-scratch training.
+- **GPU: RTX 3050 A Laptop (4 GB VRAM, driver 610.88) — CONFIRMED present**
+  after user enabled it. 4 GB VRAM: inference + modest fine-tuning feasible
+  (batch 1–4, fp16); full from-scratch training still better on cloud/Colab.
+  Torch not installed yet — installs with `uv sync` in Milestone 0.
+  UPDATE (2026-10-14): GPU found, replaces earlier "no GPU" note.
 - **FF++ access is gated:** Google Form → emailed download script (can take a
   week). c23 version ≈10 GB, c40 ≈2 GB. Action: user submits the form NOW;
   meanwhile bootstrap with **DeepfakeBench's preprocessed data links** or the

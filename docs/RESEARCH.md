@@ -139,6 +139,26 @@ Contribution: add an AI voice-deepfake detector as a second layer — verify BOT
 (AI). Two-layer defense against AI voice scams is a clear, novel, measurable
 improvement, combining blockchain (user interest) + AI (impressive + fresh).
 
+### 5f. Domain ranking (2026-10-14 — user's candidate domains)
+
+User asked to weigh: blockchain, cryptography, AI, neural networks, computer
+networks, computer vision, cybersecurity. Ranked for a student mini project on
+impressiveness, feasibility, freshness (vs seniors), and demo-ability:
+
+| Domain | Impress | Feasible | Fresh | Demo | Note |
+| --- | --- | --- | --- | --- | --- |
+| AI / Neural Networks | High | High | Medium | High | Backbone of most top picks |
+| Computer Vision | High | High | Medium | Very high | Strong demos, some saturation |
+| Cybersecurity | High | Medium | High | High | Fresh if applied to new threat |
+| Blockchain / Crypto | High | Medium | Medium | Medium | Impressive only with a fresh angle |
+| Computer Networks | Medium | Medium | Medium | Low | Weakest demo, mostly plumbing |
+
+**Conclusion:** AI + Cybersecurity (+ optional blockchain) is the strongest
+combination. The recommended project (two-layer scam-call defense, §5e) already
+sits at that intersection: AI (voice deepfake detection) + Cybersecurity
+(anti-scam) + Blockchain (caller credential). Computer vision and pure computer
+networks are weaker fits as the CORE contribution for this goal.
+
 ### 5a. Earlier biosignal scan (reference)
 
 | # | Direction | Novelty claim | Feasibility | Risk |

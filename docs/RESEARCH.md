@@ -174,6 +174,47 @@ sits at that intersection: AI (voice deepfake detection) + Cybersecurity
 (anti-scam) + Blockchain (caller credential). Computer vision and pure computer
 networks are weaker fits as the CORE contribution for this goal.
 
+### 5g. AI Scam-Call / Voice-Security domain deep scan (2026-10-14)
+
+User returned to the AI scam-call / voice-security domain and asked for a heavy
+list of project options. Scanned arXiv (audio deepfake detection, speaker
+verification anti-spoofing, scam/fraud call detection), 2025–2026. Key papers
+and reported metrics:
+
+**Detection (voice deepfake / spoof):**
+- Adaptive Compression & Targeted Perturbation (2026) — SOTA 1.51% avg EER,
+  91.6% fewer params than a 3B baseline; cross-lingual EER 3.91–5.65%.
+- Exposing & Mitigating Neural Codec Vulnerabilities (2026) — detectors fail on
+  codec-compressed speech; PCL-NET cuts EER 28.67% → 12.77% under compression.
+  **Gap: phone/real-world compression robustness.**
+- Task-Aware Joint Pruning & Distillation (2026) — compresses detectors to 31.9M
+  params, 6.3× FLOPs cut, 1.30% drop. **Gap: on-device deployment.**
+- Quantum Kernel Robustness (2026) — low-resource (200 samples) detection;
+  QSVM 27% EER vs MLP 50% under domain shift.
+
+**Scam-call specific:**
+- StreamFraudNet (2026) — incremental phone-scam detection from raw telephone
+  audio; first prediction after 10 s, updates every 2 s, faster than real time;
+  ROC-AUC 0.9953 on English benchmark. **Closest to a scam-call product.**
+  **Gap: English-only, no multilingual/Indian-language support, no explainability.**
+
+**Attacks (show current systems are vulnerable):**
+- SMIA (2025) — inaudible-frequency attack; ≥82% success vs combined systems,
+  100% vs standalone countermeasures.
+- Discrete Optimal Transport attack (2025) — black-box, transfers across datasets.
+
+**Defense / prevention (not detection):**
+- ClearMask (AsiaCCS 2025), Enkidu (ACM MM 2025) — protect speech from being
+  cloned (real-time, lightweight).
+
+**Identified gaps (project opportunities):**
+1. Phone-codec robustness (detectors degrade badly on real call audio)
+2. Multilingual / Indian-language scam-call detection (StreamFraudNet is English-only)
+3. On-device / real-time lightweight detection
+4. Explainable verdicts (why the call was flagged)
+5. Low-resource detection (works with few training samples)
+6. Robustness to adversarial attacks (SMIA/DOT bypass current systems)
+
 ### 5a. Earlier biosignal scan (reference)
 
 | # | Direction | Novelty claim | Feasibility | Risk |

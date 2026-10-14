@@ -1,70 +1,73 @@
-# PRD.md — AI Smart-Contract Vulnerability Auditor
+# PRD.md — OmniShield: Multimodal Scam & Fraud Detection Ecosystem
 
 **Status:** DRAFT — direction locked 2026-10-14; pending base-paper IEEE verification and user approval
 **Created:** 2026-10-07
 **Updated:** 2026-10-14
 
 ## 1. Problem statement
-Cross-chain bridges (the smart contracts that move crypto between blockchains)
-have lost billions to exploitable verification bugs. The 2026 base study
-cataloged these vulnerabilities across 36 real bridge projects, but the best
-automated detector (an LLM) reached only **51.2% Macro-F1** — barely better than
-a 29.3% constant baseline. Developers have no tool that reliably finds these
-bugs **and** explains them before deployment. Result: preventable, catastrophic
-financial losses.
+Scams reach victims through multiple channels — voice calls, text messages, and
+video calls — but current detection tools only handle ONE channel. A victim
+protected from phishing emails is still vulnerable to an AI-cloned voice call or
+a deepfake video call. There is no unified system that detects scams across all
+three modalities, explains the verdict, and reports it tamper-proof.
 
 ## 2. Target users
-- Smart-contract developers (primary) — catch bugs before deploying
-- Security auditors — speed up manual review with AI pre-screening
-- Bridge / DeFi projects — reduce exploit risk
+- General public receiving suspicious calls, texts, and video calls (primary)
+- Banks, telecoms, and institutions wanting to protect customers
+- Law enforcement / investigators tracking scam campaigns
 
 ## 3. Goals / non-goals
 - Goals:
-  - Detect cross-chain verification vulnerabilities in smart contracts
-  - Beat the base paper's 51.2% Macro-F1 detection bar (measurable improvement)
-  - Explain each finding in plain language (what the bug is, why it's dangerous)
-  - Provide a simple interface to submit a contract and get findings
+  - Detect scams across voice, text, and video in one unified system
+  - Fuse all three modalities into a single verdict with confidence
+  - Explain why a message/call/video was flagged
+  - Provide real-time alerts and a threat-intelligence dashboard
+  - Record scam reports tamper-proof on a blockchain ledger
 - Non-goals:
-  - Not a full formal-verification tool (no mathematical proofs)
-  - Not a guarantee of "bug-free" contracts (it's an aid, not a proof)
-  - Not a general smart-contract linter for unrelated bug classes (scoped to cross-chain verification)
+  - Not a replacement for carrier-level authentication (STIR/SHAKEN)
+  - Not a full antivirus / endpoint protection suite
+  - Not a general-purpose content moderation platform
 
 ## 4. Core features
-1. Contract input (paste/upload Solidity contract files)
-2. AI vulnerability detection (fine-tuned / purpose-built model)
-3. Plain-language explanation of each finding (location + why it's dangerous)
-4. Severity rating per finding
-5. Evaluation dashboard comparing against the base paper's benchmark
+1. Voice scam detector (AI-cloned voice detection on calls)
+2. Text phishing/smishing detector (scam texts and emails)
+3. Deepfake video detector (fake video calls)
+4. Unified AI fusion engine (combines all three into one verdict)
+5. Real-time alert system (warns users across channels)
+6. Threat-intelligence dashboard (tracks scam campaigns and trends)
+7. Blockchain report ledger (tamper-proof, shareable scam reports)
 
 ## 5. Functional requirements
-- FR-01: The system SHALL accept Solidity smart-contract source as input.
-- FR-02: The system SHALL detect cross-chain verification vulnerabilities and output their locations.
-- FR-03: The system SHALL generate a plain-language explanation for each finding.
-- FR-04: The system SHALL assign a severity level to each finding.
-- FR-05: The system SHALL report detection metrics (precision/recall/F1) on the base paper's 830-instance benchmark.
+- FR-01: The system SHALL analyze voice call audio and output a scam probability.
+- FR-02: The system SHALL analyze text messages and emails and output a phishing probability.
+- FR-03: The system SHALL analyze video call streams and output a deepfake probability.
+- FR-04: The system SHALL fuse voice, text, and video signals into a single unified verdict.
+- FR-05: The system SHALL generate a plain-language explanation for each verdict.
+- FR-06: The system SHALL alert the user in real time when a scam is detected.
+- FR-07: The system SHALL record scam reports on a blockchain ledger.
 
 ## 6. Non-functional requirements
-- NFR-01: Detection SHOULD beat the base paper's 51.2% Macro-F1 on the same benchmark.
-- NFR-02: Explanations SHOULD be understandable by a developer who is not a security expert.
-- NFR-03: Analysis of a single contract SHOULD complete in seconds, not minutes.
-- NFR-04: No user contract source SHALL be sent to third parties without consent.
+- NFR-01: Detection SHOULD run in near-real-time (< 2 s per input).
+- NFR-02: The system SHOULD remain accurate on compressed/phone-quality audio and low-resolution video.
+- NFR-03: No raw user audio, text, or video SHALL leave the device unencrypted.
+- NFR-04: The blockchain ledger SHALL be on a test network (no real-money cost).
+- NFR-05: The system SHALL be evaluated against single-modality baselines to demonstrate the value of fusion.
 
 ## 7. Success criteria
-- Detection accuracy (Macro-F1) measurably exceeds 51.2% on the base benchmark.
-- The tool correctly flags at least one known real-world vulnerable contract and explains why.
-- A working demo: paste a vulnerable contract → tool highlights the bug + explains it, live.
+- The unified system detects scams that single-modality tools miss (e.g., a scam that looks safe in text but is a deepfake in video).
+- Detection accuracy on each modality matches or beats published single-modality benchmarks.
+- A working demo: paste a scam text, play a fake voice, show a deepfake video — all caught and explained live.
 
 ## 8. Constraints
 - Student mini-project scope and timeline.
-- Uses the base paper's public dataset (830 instances, 786 contract files) and open models.
-- Scoped to cross-chain verification vulnerabilities (not all smart-contract bugs).
-- Must differ from the base paper by improving detection accuracy and adding explanations.
+- Uses free/open models and public datasets (ASVspoof, phishing datasets, deepfake benchmarks).
+- Blockchain layer uses a test network (no real-money gas costs).
+- Must differ from existing single-modality tools by unifying all three and adding explainability + blockchain reporting.
 
-## 9. Novelty statement (delta vs base paper)
-The base paper (Cross-chain Verification Vulnerabilities, 2026) cataloged the
-bugs and benchmarked LLMs at 51.2% Macro-F1, but did not build a purpose-trained
-detector or provide explanations. This project builds a fine-tuned/purpose-built
-detector that beats that bar and explains each finding — a measurable improvement
-plus an explainability contribution the base lacks.
+## 9. Novelty statement (delta vs base papers)
+Existing tools detect scams in only ONE modality. This project unifies voice,
+text, and video detection into a single ecosystem with a fused AI engine,
+real-time alerts, and blockchain-backed tamper-proof reporting — a combination
+no prior published system provides.
 
 > Rule: never invent requirements. Anything unknown stays TODO.

@@ -7,24 +7,24 @@ user's official IEEE base paper is recorded here.
 
 ## 1. Base paper (official)
 
-**Direction LOCKED (2026-10-14, revised):** AI Smart-Contract Vulnerability
-Auditor — an AI system that finds security holes in cross-chain bridge smart
-contracts and explains them. Domains integrated: AI/NN + blockchain +
-cybersecurity + computer networks.
+**Direction LOCKED (2026-10-14, final):** OmniShield — Multimodal Scam & Fraud
+Detection Ecosystem. A unified platform detecting scams across voice, text, and
+video, with blockchain-backed tamper-proof reporting. Domains integrated: AI/NN
++ cybersecurity + computer vision + blockchain + computer networks.
 
-**Candidate base paper:** "Understanding Verification Vulnerabilities in
-Cross-chain Bridges" (Oct 2026, arXiv) — first systematic study of cross-chain
-verification vulnerabilities, built from 588 audit reports across 36 real bridge
-projects; produced an 830-instance dataset over 786 contract files. Best of four
-LLMs reached only 51.2% Macro-F1 vs a 29.3% constant baseline.
+**Candidate base papers (multiple, one per modality):**
+- Voice: "StreamFraudNet" (2026) — incremental phone-scam detection, ROC-AUC 0.9953.
+- Text: phishing/smishing detection (2026) — LLM-based text classification.
+- Video: "Explainable Deepfake Detection Challenge 2026" — 93.5% accuracy + artifact heatmaps.
+- Blockchain: "BVI: Blockchain-Based Verification of Identity Claims" (2026) — on-chain caller credential verification.
 
-**One-sentence gap the project fills:** the base paper catalogs the
-vulnerabilities but its best detector reaches only 51.2% Macro-F1 — this project
-builds a purpose-trained/fine-tuned detector that measurably beats that bar and
-explains each finding in plain language.
+**One-sentence gap the project fills:** existing tools detect scams in only ONE
+modality (voice, text, or video) — this project unifies all three into a single
+ecosystem with a fused AI engine, real-time alerts, and blockchain-backed
+tamper-proof reporting.
 
-**TODO:** user verifies IEEE venue of the base paper manually via IEEE Xplore
-(through college library) or via Crossref, then records DOI here.
+**TODO:** user verifies IEEE venues of the base papers manually via IEEE Xplore
+(through college library) or via Crossref, then records DOIs here.
 
 ## 2. Landscape scan (2026-10-07, arXiv current listings)
 

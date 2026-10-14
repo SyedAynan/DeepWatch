@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Deepfake Forensics — Research Report</title>
+<title>DeepWatch — Deepfake Forensics Research Report</title>
 <style>
   @page {
     size: A4;
@@ -24,16 +24,15 @@
   }
   .pagebreak { page-break-after: always; }
 
-  /* ---------- Header ---------- */
   .titleblock {
     border-top: 3px solid #0b3d66;
     border-bottom: 1px solid #0b3d66;
     padding: 8pt 0 7pt 0;
-    margin-bottom: 9pt;
+    margin-bottom: 8pt;
   }
   h1 {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 16.5pt;
+    font-size: 15.5pt;
     color: #0b3d66;
     margin: 0 0 3pt 0;
     letter-spacing: 0.2pt;
@@ -45,7 +44,6 @@
   }
   .authorline strong { color: #0b3d66; }
 
-  /* ---------- Headings ---------- */
   h2 {
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-size: 10.5pt;
@@ -56,15 +54,13 @@
   }
   p { margin: 0 0 4pt 0; text-align: justify; }
 
-  /* ---------- Executive summary box ---------- */
   .summary {
     background: #f2f6fa;
     border-left: 3pt solid #0b3d66;
     padding: 6pt 8pt;
-    margin-bottom: 7pt;
+    margin-bottom: 6pt;
   }
 
-  /* ---------- Footer / page numbers ---------- */
   .pagenum {
     position: absolute;
     bottom: 0;
@@ -80,10 +76,29 @@
     border-bottom: 0.5pt solid #ccc;
   }
 
-  /* ---------- References ---------- */
-  .refs p {
+  table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 8.8pt;
-    margin-bottom: 3.5pt;
+    margin: 3pt 0 5pt 0;
+    font-family: Arial, sans-serif;
+  }
+  th {
+    background: #0b3d66;
+    color: #fff;
+    text-align: left;
+    padding: 2.5pt 4pt;
+    font-size: 8.6pt;
+  }
+  td {
+    border-bottom: 0.5pt solid #cfd8e0;
+    padding: 2.5pt 4pt;
+    vertical-align: top;
+  }
+
+  .refs p {
+    font-size: 8.6pt;
+    margin-bottom: 3pt;
     text-align: left;
     padding-left: 14pt;
     text-indent: -14pt;
@@ -97,26 +112,34 @@
 <div class="page pagebreak">
 
   <div class="titleblock">
-    <h1>Deepfake Forensics: A Research-Led Selection of a Mini-Project Direction</h1>
+    <h1>DeepWatch: A Unified Deepfake Forensics and Attribution Platform</h1>
     <div class="authorline">Prepared and researched by: <strong>Syed</strong> &nbsp;|&nbsp; 14 October 2026</div>
   </div>
 
   <h2>Executive Summary</h2>
   <div class="summary">
-  <p>This report documents a structured research exercise to select a computer-science mini-project that is technically strong, novel, and relevant to a real-world problem. Seven candidate domains were considered — artificial intelligence, neural networks, computer vision, cybersecurity, blockchain/cryptography, and computer networks. A systematic literature scan of recent (2022–2026) publications, including verified IEEE venues, led to a clear conclusion: the most pressing and under-served problem of the current technology era is the detection and forensic attribution of deepfakes. The selected direction is <strong>DeepWatch</strong>, an AI deepfake forensics and attribution platform that unifies detection, attribution, explanation, and report generation — a combination not present in any single published system reviewed.</p>
+  <p>Deepfakes — AI-generated fake faces, voices, and videos — have become a tool of everyday crime, from voice-clone scam calls to fabricated video evidence. Existing research tackles only fragments of the problem: detection without explanation, attribution only for faces, and no system that produces evidence a victim can actually use. This report analyses four verified IEEE/CVF base papers, identifies their concrete limitations, and proposes <strong>DeepWatch</strong>: a unified platform that detects fakes, attributes them to their generation method, explains the evidence visually, and produces a forensic report — closing gaps that the current literature leaves open.</p>
   </div>
 
-  <h2>1. Introduction</h2>
-  <p>Generative AI can now produce synthetic voices, faces, and videos that are difficult for humans to identify as fake. This capability is being misused for financial scams, misinformation, and identity fraud, affecting ordinary citizens worldwide. For a student project to matter in this era, it should address a problem people actually face. This report explains how that reasoning, combined with evidence from current research, produced the chosen project direction.</p>
+  <h2>1. The Problem</h2>
+  <p>Generative AI has made synthetic media cheap and convincing. Real incidents now include scam calls using cloned voices of family members, fake videos of public figures, and manipulated visual evidence. Victims and small investigators have no accessible tool to prove that a piece of media is fake: existing detectors output a bare score with no explanation, work only on clean laboratory data, and fail on media compressed by social platforms. The problem is therefore not only technical but practical — authenticity cannot be <em>demonstrated</em> by an ordinary person when it matters most.</p>
 
   <h2>2. Research Objectives</h2>
-  <p>The exercise had four objectives: (1) survey candidate technology domains and identify which offer fresh, demonstrable project opportunities; (2) locate credible, recent base papers — preferably in IEEE venues — to anchor the project; (3) identify concrete gaps in those papers that a student project can realistically close; and (4) define a project whose improvement over prior work is measurable, not cosmetic.</p>
+  <p>This work aims to (1) study the current state of deepfake detection and attribution as published in credible venues; (2) identify the specific, measurable limitations of the strongest existing methods; and (3) design a system that closes those gaps as an integrated, demonstrable platform, with improvements that can be verified against the base papers' published numbers.</p>
 
   <h2>3. Methodology</h2>
-  <p>The research proceeded in four stages. First, broad domain scans were run against the arXiv open repository (export.arxiv.org API) across AI, computer vision, cybersecurity, blockchain, networks, and medical technology, covering 2023–2026 publications. Second, candidate topics repeatedly found to be saturated (for example, plant disease classification and basic disease prediction, both reporting accuracies above 99% in 2026 papers) were eliminated because they leave no room for improvement claims. Third, IEEE-venue verification was performed through the OpenAlex and Crossref scholarly APIs, after direct access to IEEE Xplore was found to be restricted by anti-automation controls. Fourth, the surviving base papers were read in detail to extract their methods, datasets, reported results, and limitations.</p>
+  <p>Recent literature (2022–2026) was surveyed through the arXiv open repository, with venue verification via the OpenAlex and Crossref scholarly APIs, since IEEE Xplore restricts automated access. Four papers in verified IEEE venues were selected as the base literature and read in detail for their methods, datasets, results, and stated or observable limitations. The proposed design was then derived directly from the identified gaps, so that every planned feature answers a documented weakness rather than adding novelty for its own sake.</p>
 
-  <h2>4. Background</h2>
-  <p>Deepfake detection is an active research area, but it is fragmented. Detection (deciding whether media is fake), attribution (identifying which generation method produced it), and explanation (showing evidence a non-expert can understand) are treated as separate problems in separate papers. Meanwhile, the misuse of synthetic media has moved from laboratories into everyday crime, including voice-clone scam calls and fake video evidence. A tool that combines the full forensic chain — detect, attribute, explain, report — does not currently exist in the reviewed literature.</p>
+  <h2>4. Background and Base Papers</h2>
+  <p>Deepfake research divides into detection (is it fake?), attribution (which method made it?), and speech anti-spoofing. The table below summarises the four base papers and their key limitations as published.</p>
+
+  <table>
+    <tr><th>Base paper (venue, year)</th><th>Contribution</th><th>Key limitation</th></tr>
+    <tr><td>UCF, Yan et al., ICCV 2023 [1]</td><td>Generalizable detection via "common forgery features"; 0.996 AUC in-dataset</td><td>Drops to 0.828 AUC cross-dataset; needs forgery-method labels; no explanation</td></tr>
+    <tr><td>Up-sampling artifacts, Tan et al., CVPR 2024 [2]</td><td>Detects CNN-generator up-sampling artifacts</td><td>Blind to diffusion-based fakes (no such artifacts)</td></tr>
+    <tr><td>OW-DFA / CPL, Sun et al., ICCV 2023 [3]</td><td>Open-world attribution of unseen forgery methods</td><td>Face-only; low accuracy on unseen attacks; field still young</td></tr>
+    <tr><td>ASVspoof 2021, Liu et al., IEEE/ACM TASLP 2023 [4]</td><td>Benchmark for spoofed/deepfake speech</td><td>Audio-only; never fused with video analysis</td></tr>
+  </table>
 
   <div class="footrule"></div>
   <div class="pagenum">Page 1 of 2</div>
@@ -125,28 +148,25 @@
 <!-- ================= PAGE 2 ================= -->
 <div class="page">
 
-  <h2>5. Key Research Findings</h2>
-  <p>The literature scan produced three verified IEEE/CVF findings of direct relevance. First, Yan et al. (ICCV 2023) proposed UCF, a generalizable detector that separates "common forgery features" from method-specific ones; it achieves 0.996 AUC within its training dataset but only 0.828 average AUC on unseen datasets — a large, openly visible generalization gap [1]. Second, Sun et al. (ICCV 2023) introduced open-world deepfake attribution (OW-DFA), showing that identifying the forgery method is possible even for attacks unseen during training, but only for face forgeries and with limited accuracy [2]. Third, the attribution field is young: the two leading IEEE attribution papers (IEEE ICIP 2022; ICCV 2023) have roughly 27–29 citations each, compared with 200+ for detection papers — indicating that attribution is an open frontier where a student contribution is realistic [2][3]. On the audio side, the ASVspoof 2021 benchmark (IEEE/ACM TASLP) confirms that speech spoofing is treated separately from video, leaving cross-modal video-call forensics unaddressed [4].</p>
+  <h2>5. Analysis: The Gap in Current Work</h2>
+  <p>Read together, the base papers reveal a structural gap. Detection, attribution, and audio analysis exist as isolated research tracks; none of the reviewed systems combines them, and none produces human-usable evidence. Furthermore, the strongest detector (UCF) loses roughly a fifth of its accuracy on unseen data [1], the most cited artifact method is blind to diffusion generators [2], and attribution remains limited to narrow face-swap settings [3]. These are not marginal issues — they are the difference between a laboratory metric and a tool that works on a real scam video call.</p>
 
-  <h2>6. Analysis</h2>
-  <p>These findings expose five exploitable gaps: (a) detectors trained on GAN-era fakes generalize poorly to newer diffusion-based generators; (b) audio and video detection are never fused, although real fake video calls contain both; (c) no reviewed system produces human-readable evidence reports suitable for police or legal use; (d) detectors output bare scores without explanation; and (e) attribution is accurate only within narrow, face-only settings. A project that closes even two or three of these gaps, while standing on published IEEE methods, can claim measurable novelty rather than a re-implementation.</p>
+  <h2>6. Proposed Work: What We Will Newly Implement</h2>
+  <p>DeepWatch is designed to close the documented gaps through five concrete innovations:</p>
+  <p><strong>(a) Diffusion-aware detection</strong> — extend detection beyond GAN artifacts to diffusion-generated fakes, addressing the blind spot of [2]. <strong>(b) Audio–video fusion</strong> — jointly analyse face, voice, and lip-sync consistency in video calls, merging the video track of [1] with the speech track of [4] for the first time in a single pipeline. <strong>(c) Unified attribution</strong> — build on the open-world approach of [3] to name the likely generation method, extended beyond face-only forgeries. <strong>(d) Explainable evidence</strong> — visual heatmaps and plain-language reasons instead of a bare score. <strong>(e) One-click forensic report</strong> — a tamper-evident PDF (optionally hash-anchored on a test blockchain) that a victim can present to authorities — a capability absent from all reviewed systems. Improvements will be measured against the base papers' published metrics (AUC, attribution accuracy) so the contribution is verifiable.</p>
 
   <h2>7. Challenges</h2>
-  <p>Three challenges are anticipated. Generalization remains the hardest open problem in the field, so improvement targets must be modest and honestly measured. Diffusion-generated fakes require suitable public datasets, which are newer and less standardized than FaceForensics++. Finally, IEEE full texts are paywalled; the project relies on authors' open arXiv versions, which carry identical technical content.</p>
+  <p>Cross-dataset generalization remains the hardest open problem in the field, so improvement targets will be modest and honestly reported. Diffusion-era datasets are newer and less standardized than FaceForensics++. Social-media compression destroys low-level artifacts, requiring compression-robust training. Finally, fusing audio and video raises synchronization and compute demands that must be managed within a student project's resources.</p>
 
-  <h2>8. Recommendations</h2>
-  <p>It is recommended to (1) adopt UCF [1] and the OW-DFA attribution framework [2] as the twin base papers; (2) target diffusion-aware detection and audio–video fusion as the primary innovations; (3) add an explainability layer and one-click forensic report generation as differentiating features; and (4) evaluate against the base papers' published numbers so the improvement is verifiable.</p>
-
-  <h2>9. Conclusion</h2>
-  <p>The research confirms that deepfake forensics — specifically the unification of detection, attribution, explanation, and reporting — is a fresh, high-impact, and feasible direction for a mini-project. It addresses a real-world problem affecting ordinary people today, rests on credible IEEE/CVF foundations, and offers clearly identifiable gaps that a focused student project can close. The direction, named <strong>DeepWatch</strong>, is therefore selected for implementation.</p>
+  <h2>8. Recommendations and Conclusion</h2>
+  <p>It is recommended to adopt UCF [1] and OW-DFA [3] as the twin technical bases, prioritise innovations (a) and (b) as the core contribution, and deliver (d) and (e) as the differentiating features. The conclusion of this research is that deepfake forensics is a real, current, and under-served problem; that credible IEEE/CVF foundations exist but leave clear, documented gaps; and that a unified detect–attribute–explain–report platform is both feasible and novel. DeepWatch is therefore proposed for implementation.</p>
 
   <h2>References</h2>
   <div class="refs">
     <p>[1] Z. Yan, Y. Zhang, Y. Fan, B. Wu, "UCF: Uncovering Common Features for Generalizable Deepfake Detection," IEEE/CVF ICCV 2023. DOI: 10.1109/ICCV51070.2023.02048 — <a href="https://arxiv.org/abs/2304.13949">arxiv.org/abs/2304.13949</a></p>
-    <p>[2] Z. Sun et al., "Contrastive Pseudo Learning for Open-World DeepFake Attribution," IEEE/CVF ICCV 2023 — <a href="https://arxiv.org/abs/2309.11132">arxiv.org/abs/2309.11132</a></p>
-    <p>[3] S. Jia, X. Li, S. Lyu, "Model Attribution of Face-Swap Deepfake Videos," IEEE ICIP 2022 — indexed via <a href="https://api.openalex.org">api.openalex.org</a></p>
+    <p>[2] C. Tan et al., "Rethinking the Up-Sampling Operations in CNN-Based Generative Network for Generalizable Deepfake Detection," IEEE/CVF CVPR 2024 — indexed via <a href="https://api.openalex.org">api.openalex.org</a></p>
+    <p>[3] Z. Sun et al., "Contrastive Pseudo Learning for Open-World DeepFake Attribution," IEEE/CVF ICCV 2023 — <a href="https://arxiv.org/abs/2309.11132">arxiv.org/abs/2309.11132</a></p>
     <p>[4] X. Liu et al., "ASVspoof 2021: Towards Spoofed and Deepfake Speech Detection in the Wild," IEEE/ACM Trans. Audio, Speech, and Language Processing, 2023 — indexed via <a href="https://api.openalex.org">api.openalex.org</a></p>
-    <p>[5] arXiv open repository, domain scans, October 2026 — <a href="https://export.arxiv.org/api/query">export.arxiv.org/api/query</a></p>
   </div>
 
   <div class="footrule"></div>

@@ -8,17 +8,24 @@ explains evidence, and issues integrity-protected forensic reports.
 
 Read, in order:
 1. `docs/PRD.md`
-2. `docs/ARCHITECTURE.md`
-3. `docs/TECHSPEC.md`
-4. `docs/APPFLOW.md`
-5. `docs/SCHEMA.md`
-6. `docs/RULES.md`
-7. `docs/PHASES.md`
-8. `docs/IMPLEMENTATIONPLAN.md`
-9. `docs/TRACKER.md`
-10. `docs/DESIGN.md`
-11. `docs/REQUIREMENTS.md`
-12. `docs/MEMORY.md`
+2. `docs/RESEARCH_REVIEW.md`
+3. `docs/GAP_ANALYSIS.md`
+4. `docs/BASE_PAPER_SELECTION.md`
+5. `docs/INNOVATION_BLUEPRINT.md`
+6. `docs/DATASET_AND_EXPERIMENT_PLAN.md`
+7. `docs/SECURITY_AND_PRIVACY.md`
+8. `docs/ARCHITECTURE.md`
+9. `docs/TECHSPEC.md`
+10. `docs/APPFLOW.md`
+11. `docs/SCHEMA.md`
+12. `docs/RULES.md`
+13. `docs/PHASES.md`
+14. `docs/IMPLEMENTATION_ROADMAP.md`
+15. `docs/IMPLEMENTATIONPLAN.md`
+16. `docs/TRACKER.md`
+17. `docs/DESIGN.md`
+18. `docs/REQUIREMENTS.md`
+19. `docs/MEMORY.md`
 
 ## Rules
 

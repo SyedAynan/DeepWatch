@@ -7,17 +7,21 @@ user's official IEEE base paper is recorded here.
 
 ## 1. Base paper (official)
 
-**Direction LOCKED (2026-10-14):** Two-Layer AI Scam-Call Defense — blockchain
-caller-credential verification (Layer 1) + AI voice-deepfake detection (Layer 2).
+**Direction LOCKED (2026-10-14, revised):** AI Smart-Contract Vulnerability
+Auditor — an AI system that finds security holes in cross-chain bridge smart
+contracts and explains them. Domains integrated: AI/NN + blockchain +
+cybersecurity + computer networks.
 
-**Candidate base paper:** "BVI: Blockchain-Based Verification of Identity Claims"
-(Oct 2026, arXiv) — verifies a caller holds an issued credential on-chain, countering
-voice-cloning scams. Metrics: 27/27 scenario tests pass, ~91.5k gas/session anchor,
-detects 20.6% of in-path rewrites vs 0.1% baseline.
+**Candidate base paper:** "Understanding Verification Vulnerabilities in
+Cross-chain Bridges" (Oct 2026, arXiv) — first systematic study of cross-chain
+verification vulnerabilities, built from 588 audit reports across 36 real bridge
+projects; produced an 830-instance dataset over 786 contract files. Best of four
+LLMs reached only 51.2% Macro-F1 vs a 29.3% constant baseline.
 
-**One-sentence gap the project fills:** BVI verifies caller *identity* only; this
-project adds an AI *voice-deepfake* layer so both "is the number real?" (blockchain)
-and "is the voice human?" (AI) are checked — a two-layer defense no prior work combines.
+**One-sentence gap the project fills:** the base paper catalogs the
+vulnerabilities but its best detector reaches only 51.2% Macro-F1 — this project
+builds a purpose-trained/fine-tuned detector that measurably beats that bar and
+explains each finding in plain language.
 
 **TODO:** user verifies IEEE venue of the base paper manually via IEEE Xplore
 (through college library) or via Crossref, then records DOI here.

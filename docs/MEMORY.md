@@ -1,9 +1,11 @@
 # MEMORY.md — Project State
 
 **Last updated:** 2026-10-14
-**Current phase:** 0 — DONE; Phase 1 READY TO START
-**Current task:** awaiting user go-ahead to build Phase 1; user verifies IEEE
-Xplore access to the four base papers in parallel (formality)
+**Current phase:** Research gates 1–6 DONE (blueprint committed); GATE 7 —
+awaiting user approval to start building
+**Current task:** user is enabling the machine GPU, then will approve/ revise
+the research blueprint; on approval start Milestone 0 (uv init + skeleton +
+ingest/hashing + eval harness)
 
 ## Completed
 - 2026-10-14: **PROJECT DEFINED — "DeepWatch"**: a unified multimodal deepfake

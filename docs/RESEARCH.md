@@ -1,15 +1,26 @@
 # RESEARCH.md — Base Paper & Novelty Scan
 
-**Status:** Phase 0 — landscape scanned 2026-10-07; base paper TODO
+**Status:** Phase 0 — direction LOCKED 2026-10-14; IEEE base paper pending manual verification
 **Purpose:** this project must NOT repeat existing IEEE/arXiv work. Before any
 feature is built, the chosen direction is checked against prior art, and the
 user's official IEEE base paper is recorded here.
 
 ## 1. Base paper (official)
 
-TODO — user supplies (typically assigned by the institution/department).
-When provided, record: title, authors, venue, year, DOI, and the one-sentence
-gap the project will fill relative to it.
+**Direction LOCKED (2026-10-14):** Two-Layer AI Scam-Call Defense — blockchain
+caller-credential verification (Layer 1) + AI voice-deepfake detection (Layer 2).
+
+**Candidate base paper:** "BVI: Blockchain-Based Verification of Identity Claims"
+(Oct 2026, arXiv) — verifies a caller holds an issued credential on-chain, countering
+voice-cloning scams. Metrics: 27/27 scenario tests pass, ~91.5k gas/session anchor,
+detects 20.6% of in-path rewrites vs 0.1% baseline.
+
+**One-sentence gap the project fills:** BVI verifies caller *identity* only; this
+project adds an AI *voice-deepfake* layer so both "is the number real?" (blockchain)
+and "is the voice human?" (AI) are checked — a two-layer defense no prior work combines.
+
+**TODO:** user verifies IEEE venue of the base paper manually via IEEE Xplore
+(through college library) or via Crossref, then records DOI here.
 
 ## 2. Landscape scan (2026-10-07, arXiv current listings)
 

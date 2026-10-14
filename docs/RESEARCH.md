@@ -115,6 +115,30 @@ Contribution: improve robustness/accuracy on compressed, real phone-call audio
 (and optionally Indian-accent speech), plus a simple demo that flags a live or
 recorded call as real vs AI.
 
+### 5e. Blockchain + AI scan (2026-10-14 — user's stated interest)
+
+User asked about blockchain/cryptography, then blockchain + AI combined. Scanned
+2026 arXiv (cs.CR) for strong base papers at that intersection.
+
+**Standout base paper — BVI: Blockchain-Based Verification of Identity Claims
+(Oct 2026):** lets a call recipient verify a caller (e.g. a bank) actually holds
+an issued credential, directly countering voice-cloning scams. Metrics: 27/27
+automated scenario tests pass, ~91.5k gas per session anchor, detects 20.6% of
+in-path rewrites vs 0.1% baseline. Fresh, real-world, strong metrics.
+
+**Other strong 2026 candidates at the intersection:**
+- *Post-quantum V2X auth (ZKS-PQC)* — ZKP shrinks vehicle-security messages >95%.
+- *Physics-Attested Federated Learning* — zk-SNARKs + cyber-physical invariants
+  catch data poisoning in FL (water infrastructure); 0/100 honest rejected.
+- *Cross-chain bridge auditor* — LLM finds verification bugs; 51.2% Macro-F1.
+
+**RECOMMENDED: Blockchain + AI Scam-Call Defense (two-layer).**
+Base: BVI (blockchain caller-credential verification).
+Contribution: add an AI voice-deepfake detector as a second layer — verify BOTH
+"is this number really the bank?" (blockchain) AND "is this voice really human?"
+(AI). Two-layer defense against AI voice scams is a clear, novel, measurable
+improvement, combining blockchain (user interest) + AI (impressive + fresh).
+
 ### 5a. Earlier biosignal scan (reference)
 
 | # | Direction | Novelty claim | Feasibility | Risk |

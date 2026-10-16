@@ -16,9 +16,9 @@
   > **⏸️ Development paused (2026-10-14).** Research blueprint, Milestone 0, and dataset pipeline are complete and committed; the project is frozen at a clean resume checkpoint. See [`docs/MEMORY.md`](docs/MEMORY.md) for the exact resume point. Work resumes on a future signal — the repo is intentionally paused, not abandoned.
 
   <p>
-    <a href="https://github.com/SyedAynan/Mini-Project/actions"><img src="https://img.shields.io/badge/CI_Build-Passing-00F0FF?style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white" alt="CI Status"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project"><img src="https://img.shields.io/badge/Status-Active_Development-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="Status"/></a>
-    <a href="https://github.com/SyedAynan/Mini-Project/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square&color=00F0FF&labelColor=161b22" alt="License"/></a>
+    <a href="https://github.com/SyedAynan/DeepWatch/actions"><img src="https://img.shields.io/badge/CI_Build-Passing-00F0FF?style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white" alt="CI Status"/></a>
+    <a href="https://github.com/SyedAynan/DeepWatch"><img src="https://img.shields.io/badge/Status-⏸️%20Paused-FFA500?style=flat-square&color=00F0FF&labelColor=161b22" alt="Status"/></a>
+    <a href="https://github.com/SyedAynan/DeepWatch/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square&color=00F0FF&labelColor=161b22" alt="License"/></a>
     <img src="https://img.shields.io/badge/PyTorch-Deepfake_Detection-EE4C2C?style=flat-square&color=00F0FF&labelColor=161b22&logo=pytorch&logoColor=white" alt="PyTorch"/>
     <img src="https://img.shields.io/badge/Base-IEEE%2FCVF%20ICCV%202023-990000?style=flat-square&color=00F0FF&labelColor=161b22&logo=ieee&logoColor=white" alt="IEEE ICCV"/>
     <img src="https://img.shields.io/badge/Forensics-Evidence_Preserving-00E676?style=flat-square&color=00F0FF&labelColor=161b22" alt="Forensics"/>
@@ -179,8 +179,8 @@ sequenceDiagram
 
 ```bash
 # 1. Clone
-git clone https://github.com/SyedAynan/Mini-Project.git
-cd Mini-Project
+git clone https://github.com/SyedAynan/DeepWatch.git
+cd DeepWatch
 
 # 2. Inspect the spec
 head -n 40 docs/PRD.md

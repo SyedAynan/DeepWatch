@@ -1,10 +1,25 @@
 # MEMORY.md — Project State
 
 **Last updated:** 2026-10-14
-**Current phase:** Research gates 1–6 DONE (blueprint committed); GATE 7 —
-awaiting user approval to start building
-**Current task:** GPU confirmed (RTX 3050 A, 4 GB) — hardware concern resolved;
-awaiting user's GATE-7 approval of the research blueprint to start Milestone 0
+**Current phase:** PINNED — Milestone 0 + dataset loader complete; awaiting user
+signal to resume DeepWatch build
+**Current task:** user pivoted to a different project in a new repo; DeepWatch
+is frozen at a clean, resumable checkpoint
+
+## Resume point (pinned 2026-10-14)
+DeepWatch is at a clean checkpoint — pick up exactly here on "resume DeepWatch":
+- ✅ GATE 1–7 complete (research blueprint, 84-paper review, decision report)
+- ✅ Milestone 0: uv project, package skeleton, ingest (SHA-256 hash +
+  immutable preserve + append-only audit log), `deepwatch ingest` CLI
+- ✅ Dataset manifest loader (`ingest/datasets.py`) — folder-marker +
+  CSV/JSON manifest scan
+- ✅ CUDA PyTorch working: `torch 2.11.0+cu128` on RTX 3050 A (4 GB)
+- ✅ Tests: 8/8 green
+- **Next task when resumed:** Milestone 1 — baseline detector (DeepfakeBench
+  UCF/Xception pretrained or bootstrap train) + eval harness → AUC on a split.
+  Pending decision: pull pretrained weights (A) vs bootstrap-train (B).
+- **External pending:** user submits FF++ Google-form request; IEEE Xplore
+  access check for the 4 base papers (formality).
 
 ## Completed
 - 2026-10-14: **PROJECT DEFINED — "DeepWatch"**: a unified multimodal deepfake

@@ -8,9 +8,10 @@
 - [ ] not started · [~] in progress · [x] done (add date) · [!] blocked (add note)
 
 ## Current task
-Milestone 0 DONE (scaffold + forensic ingest + audit log + tests, 3/3 green).
-CUDA torch wheel resolving (network flaky, in progress). Next: Milestone 1
-baseline detector + eval harness via DeepfakeBench.
+PINNED (2026-10-14): user pivoted to a different project in a new repo.
+DeepWatch frozen at clean checkpoint — Milestone 0 + dataset loader done,
+CUDA torch working, 8/8 tests green. Next on resume: Milestone 1 baseline
+detector + eval harness.
 
 ## Phase 1 — Scaffold + baseline detector
 - [x] 1.1 uv project init (pyproject, deps), `uv sync` — 2026-10-14 (CUDA wheel resolving)

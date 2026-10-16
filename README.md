@@ -8,8 +8,12 @@
   <h1>🔍 DeepWatch — Unified Deepfake Forensics & Attribution Platform</h1>
 
   <p>
+    <img src="https://img.shields.io/badge/Status-⏸️%20Paused_In_Development-FFA500?style=for-the-badge&labelColor=161b22" alt="Paused"/>
     <strong>Multimodal AI forensic lab that detects manipulated media, attributes the generation method, explains the evidence, and issues integrity-protected forensic reports</strong>
   </p>
+
+  > [!IMPORTANT]
+  > **⏸️ Development paused (2026-10-14).** Research blueprint, Milestone 0, and dataset pipeline are complete and committed; the project is frozen at a clean resume checkpoint. See [`docs/MEMORY.md`](docs/MEMORY.md) for the exact resume point. Work resumes on a future signal — the repo is intentionally paused, not abandoned.
 
   <p>
     <a href="https://github.com/SyedAynan/Mini-Project/actions"><img src="https://img.shields.io/badge/CI_Build-Passing-00F0FF?style=flat-square&color=00F0FF&labelColor=161b22&logo=githubactions&logoColor=white" alt="CI Status"/></a>

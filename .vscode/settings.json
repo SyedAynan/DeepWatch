@@ -1,0 +1,55 @@
+{
+  // ── Python Interpreter (uv-managed) ──
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.envFile": "${workspaceFolder}/.env",
+
+  // ── Python Formatting & Linting (Ruff) ──
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // ── Type Checking (Pylance) ──
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "error",
+    "reportMissingModuleSource": "warning"
+  },
+
+  // ── Testing (pytest via uv) ──
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": [
+    "tests",
+    "-v",
+    "--tb=short"
+  ],
+
+  // ── Editor ──
+  "editor.rulers": [100],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  // ── Search: exclude noise ──
+  "search.exclude": {
+    "**/.venv": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/uv.lock": true,
+    "**/*.egg-info": true,
+    "**/data/datasets": true,
+    "**/data/evidence": true,
+    "**/data/runs": true,
+    "**/htmlcov": true
+  },
+
+  // ── File Associations ──
+  "files.associations": {
+    "*.md": "markdown"
+  }
+}

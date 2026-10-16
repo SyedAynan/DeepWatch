@@ -1,7 +1,12 @@
 # OS / editor
 Thumbs.db
 .DS_Store
-.vscode/
+# Track .vscode workspace configs; ignore personal state
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea/
 
 # Env
@@ -34,3 +39,6 @@ data/analysis_log.db
 data/datasets/
 *.egg-info/
 research/
+htmlcov/
+coverage.json
+.coverage

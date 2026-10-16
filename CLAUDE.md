@@ -1,39 +1,53 @@
-# DeepWatch (Mini Project)
+# DeepWatch
 
-Unified multimodal deepfake forensics and generation-method attribution
-platform — detects manipulated media, attributes the generation method,
-explains evidence, and issues integrity-protected forensic reports.
+Unified multimodal deepfake forensics and generation-method attribution platform.
 
-## Workflow (before every coding task)
+## Quick Reference
 
-Read, in order:
-1. `docs/PRD.md`
-2. `docs/RESEARCH_REVIEW.md`
-3. `docs/GAP_ANALYSIS.md`
-4. `docs/BASE_PAPER_SELECTION.md`
-5. `docs/INNOVATION_BLUEPRINT.md`
-6. `docs/DATASET_AND_EXPERIMENT_PLAN.md`
-7. `docs/SECURITY_AND_PRIVACY.md`
-8. `docs/ARCHITECTURE.md`
-9. `docs/TECHSPEC.md`
-10. `docs/APPFLOW.md`
-11. `docs/SCHEMA.md`
-12. `docs/RULES.md`
-13. `docs/PHASES.md`
-14. `docs/IMPLEMENTATION_ROADMAP.md`
-15. `docs/IMPLEMENTATIONPLAN.md`
-16. `docs/TRACKER.md`
-17. `docs/DESIGN.md`
-18. `docs/REQUIREMENTS.md`
-19. `docs/MEMORY.md`
+- **Stack**: Python 3.11 · PyTorch · FastAPI · SQLAlchemy · timm
+- **Package manager**: uv (run all commands via `uv run`)
+- **Source**: `src/deepwatch/` · **Tests**: `tests/`
+- **Docs**: `docs/` (19 files — read PRD.md → ARCHITECTURE.md → TECHSPEC.md first)
+
+## Commands
+
+```bash
+uv sync --dev              # Install/sync all dependencies
+uv run ruff check src/     # Lint
+uv run ruff format src/    # Format
+uv run pyright src/        # Type check
+uv run pytest tests/ -v    # Run tests
+uv run pytest tests/ --cov=deepwatch  # Tests + coverage
+uv run pre-commit install  # Install git hooks
+uv run pre-commit run -a   # Run all pre-commit checks
+uv run python scripts/health_report.py  # Project health
+```
+
+## Claude Code Commands
+
+| Command | Purpose |
+|---|---|
+| `/project:plan <task>` | Analyze requirements, produce implementation plan |
+| `/project:implement <plan>` | Execute approved plan with validation |
+| `/project:review [files]` | Code review for correctness, security, tests |
+| `/project:test [pattern]` | Run tests, diagnose failures, report coverage |
+| `/project:security-audit` | Dependencies, secrets, input validation scan |
+| `/project:research-papers <topic>` | Literature review with verified citations |
+| `/project:experiment <name>` | Reproducible experiment with metrics |
+| `/project:release [version]` | Pre-release checklist and changelog |
 
 ## Rules
 
-- Never invent project state; mark unknowns `TODO`.
-- Inspect relevant source before modifying it.
-- Work only the current task/phase unless explicitly instructed otherwise.
-- After meaningful work: verify, run relevant tests/checks, update `docs/MEMORY.md`
-  (and `docs/PHASES.md` if phase status changed).
-- Source of truth priority: working code > tests > PRD > ARCHITECTURE > RULES >
-  PHASES > DESIGN > MEMORY. If docs conflict with code, fix the docs.
-- Keep documentation concise and factual.
+1. **Read before write** — inspect relevant source and docs before modifying
+2. **Small changes** — one logical unit per commit
+3. **Verify** — run lint + tests after every change; never claim green if red
+4. **No fabrication** — mark unknowns as `TODO`, never invent project state
+5. **Docs stay current** — update `docs/MEMORY.md` after meaningful work
+6. **Source of truth**: working code > tests > PRD > ARCHITECTURE > RULES > PHASES
+
+## Workflow (before coding tasks)
+
+Read in order: `docs/PRD.md` → `docs/RESEARCH_REVIEW.md` → `docs/ARCHITECTURE.md`
+→ `docs/TECHSPEC.md` → `docs/PHASES.md` → `docs/MEMORY.md`
+
+Work only the current phase unless explicitly told otherwise.

@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // Python core
+    "ms-python.python",
+    "ms-python.debugpy",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+
+    // AI assistant
+    "anthropic.claude-code",
+
+    // Git
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+
+    // Code quality
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "gruntfuggly.todo-tree",
+
+    // Markdown & docs
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-preview-github-styles",
+
+    // UI
+    "pkief.material-icon-theme"
+  ],
+  "unwantedRecommendations": []
+}

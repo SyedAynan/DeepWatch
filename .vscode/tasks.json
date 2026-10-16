@@ -1,0 +1,107 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🔍 Lint (Ruff Check)",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "ruff", "check", "src/", "tests/"],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "✨ Format (Ruff Format)",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "ruff", "format", "src/", "tests/"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "🔬 Type Check (Pyright)",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "pyright", "src/"],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Test (Pytest)",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "pytest", "tests/", "-v", "--tb=short"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Test with Coverage",
+      "type": "shell",
+      "command": "uv",
+      "args": [
+        "run", "pytest", "tests/", "-v", "--tb=short",
+        "--cov=deepwatch", "--cov-report=term-missing",
+        "--cov-report=html:htmlcov", "--cov-report=json:coverage.json"
+      ],
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "⚡ Quality Suite (All Checks)",
+      "dependsOn": [
+        "🔍 Lint (Ruff Check)",
+        "🔬 Type Check (Pyright)",
+        "🧪 Test (Pytest)"
+      ],
+      "dependsOrder": "sequence",
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "🚀 Dev Server (FastAPI)",
+      "type": "shell",
+      "command": "uv",
+      "args": [
+        "run", "uvicorn", "deepwatch.api.app:app",
+        "--reload", "--host", "127.0.0.1", "--port", "8000"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      },
+      "isBackground": true,
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "📦 Setup: Sync Dependencies",
+      "type": "shell",
+      "command": "uv",
+      "args": ["sync", "--dev"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "📦 Setup: Install Pre-commit Hooks",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "pre-commit", "install"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "📋 Health Report",
+      "type": "shell",
+      "command": "uv",
+      "args": ["run", "python", "scripts/health_report.py"],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    }
+  ]
+}

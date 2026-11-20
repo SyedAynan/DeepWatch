@@ -83,7 +83,7 @@
       "label": "📦 Setup: Sync Dependencies",
       "type": "shell",
       "command": "uv",
-      "args": ["sync", "--dev"],
+      "args": ["sync"],
       "presentation": { "reveal": "always", "panel": "shared" },
       "problemMatcher": []
     },

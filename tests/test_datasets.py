@@ -1,4 +1,5 @@
 """Tests for the dataset manifest loader."""
+
 from __future__ import annotations
 
 import json
@@ -29,7 +30,8 @@ def test_scan_manifest_csv_takes_precedence(tmp_path: Path):
     _touch(tmp_path / "clips" / "x.mp4")
     _touch(tmp_path / "clips" / "y.mp4")
     (tmp_path / "manifest.csv").write_text(
-        "path,label\nclips/x.mp4,fake\nclips/y.mp4,real\n", encoding="utf-8")
+        "path,label\nclips/x.mp4,fake\nclips/y.mp4,real\n", encoding="utf-8"
+    )
     samples = datasets.scan(tmp_path)
     lab = {Path(s["path"]).name: s["label"] for s in samples}
     assert lab == {"x.mp4": "fake", "y.mp4": "real"}
@@ -38,7 +40,8 @@ def test_scan_manifest_csv_takes_precedence(tmp_path: Path):
 def test_scan_manifest_json(tmp_path: Path):
     _touch(tmp_path / "m" / "z.png")
     (tmp_path / "manifest.json").write_text(
-        json.dumps([{"path": "m/z.png", "label": "fake"}]), encoding="utf-8")
+        json.dumps([{"path": "m/z.png", "label": "fake"}]), encoding="utf-8"
+    )
     samples = datasets.scan(tmp_path)
     assert samples[0]["label"] == "fake"
 

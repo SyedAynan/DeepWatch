@@ -6,18 +6,26 @@ signal to resume DeepWatch build
 **Current task:** user pivoted to a different project in a new repo; DeepWatch
 is frozen at a clean, resumable checkpoint
 
-## Resume point (pinned 2026-10-14)
+## Resume point (pinned 2026-10-14, REVISED 2026-10-17 on resume)
 DeepWatch is at a clean checkpoint — pick up exactly here on "resume DeepWatch":
 - ✅ GATE 1–7 complete (research blueprint, 84-paper review, decision report)
 - ✅ Milestone 0: uv project, package skeleton, ingest (SHA-256 hash +
   immutable preserve + append-only audit log), `deepwatch ingest` CLI
 - ✅ Dataset manifest loader (`ingest/datasets.py`) — folder-marker +
   CSV/JSON manifest scan
-- ✅ CUDA PyTorch working: `torch 2.11.0+cu128` on RTX 3050 A (4 GB)
-- ✅ Tests: 8/8 green
-- **Next task when resumed:** Milestone 1 — baseline detector (DeepfakeBench
-  UCF/Xception pretrained or bootstrap train) + eval harness → AUC on a split.
-  Pending decision: pull pretrained weights (A) vs bootstrap-train (B).
+- ✅ Milestone 1 IN PROGRESS (2026-10-17): `detect/model.py` (Xception loader:
+  imagenet bootstrap + DeepfakeBench checkpoint slot), `detect/pipeline.py`
+  (face-crop → score, image + frame-sampled video), `eval/benchmark.py`
+  (AUC/AP/FP/FN/separated), `deepwatch detect` CLI, `tests/test_detect.py`
+  (torch-free stubs) — code written, awaiting env sync to run.
+- ✅ ENV RESOLVED (2026-10-17): `.venv` was empty because dev tools were an
+  `[project.optional-dependencies]` extra named `dev`, which `uv sync --dev`
+  never installs. Moved to `[dependency-groups] dev` — plain `uv sync` now
+  installs the toolchain. Also pinned `opencv-python<5` (cv2 5.x removed
+  `CascadeClassifier`/Haar cascades and broke face-crop). VERIFIED GREEN:
+  14/14 pytest, ruff clean, pyright clean, format clean, coverage 60%.
+- **Blocked on:** a first real `detect` score (needs a real media file) and
+  FF++ dataset access.
 - **External pending:** user submits FF++ Google-form request; IEEE Xplore
   access check for the 4 base papers (formality).
 
@@ -60,8 +68,17 @@ DeepWatch is at a clean checkpoint — pick up exactly here on "resume DeepWatch
 - Local-first processing — user media never leaves the device (PRD NFR-04).
 
 ## Known issues / blockers
-- None technical. User-side formality: confirm the 4 base papers are
-  accessible via IEEE Xplore through the college library.
+- **Env regression (2026-10-17, resume):** `.venv` was EMPTY — only virtualenv
+  bootstrap files, no packages. The "8/8 green + CUDA torch" checkpoint state
+  did not survive on disk. Root cause of slow `uv run`: re-resolving the full
+  tree, not a code problem. Fix: re-run `uv sync`.
+- **C: drive is 99% full (~2.3 GB free, 2026-10-17):** CUDA torch wheel (~3 GB)
+  fails to extract with `os error 112`. Fix: `UV_CACHE_DIR="S:/uv-cache"` (S:
+  has ~150 GB free) + `UV_LOCK_TIMEOUT=600`. Always prefix uv commands with
+  these env vars until C: is cleaned up. Consider a per-project `.env`/`.venv`
+  note so this isn't rediscovered on the next resume.
+- User-side formality (carried over): confirm the 4 base papers are accessible
+  via IEEE Xplore through the college library.
 
 ## Tests / results
 - None applicable yet (no code; Phase 1 not started).

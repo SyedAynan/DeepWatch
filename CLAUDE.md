@@ -12,7 +12,7 @@ Unified multimodal deepfake forensics and generation-method attribution platform
 ## Commands
 
 ```bash
-uv sync --dev              # Install/sync all dependencies
+uv sync                    # Install/sync all dependencies (dev group included)
 uv run ruff check src/     # Lint
 uv run ruff format src/    # Format
 uv run pyright src/        # Type check

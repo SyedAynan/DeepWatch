@@ -42,3 +42,6 @@ research/
 htmlcov/
 coverage.json
 .coverage
+health_report.json
+HEALTH.md
+test-results.xml

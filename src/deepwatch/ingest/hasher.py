@@ -3,6 +3,7 @@
 Computes SHA-256 over uploaded media before any analysis. The hash is the
 evidence's integrity anchor — any tampering after ingest changes it.
 """
+
 from __future__ import annotations
 
 import hashlib

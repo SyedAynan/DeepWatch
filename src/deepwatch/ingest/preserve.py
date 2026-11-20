@@ -4,6 +4,7 @@ The original is copied verbatim into data/evidence/<sha256>.<ext> so that
 analysis always runs on a copy and the pristine input is retained for
 re-examination. Never mutate the preserved file.
 """
+
 from __future__ import annotations
 
 import shutil

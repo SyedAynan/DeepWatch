@@ -12,7 +12,10 @@ dependencies = [
     "torch>=2.2",
     "torchvision>=0.17",
     "timm>=0.9",
-    "opencv-python>=4.9",
+    # Pin to the 4.x line: opencv-python 5.x removed cv2.CascadeClassifier and
+    # ships an empty cv2/data/ (no bundled Haar cascades), which the detection
+    # pipeline's face-crop step and its tests rely on.
+    "opencv-python>=4.9,<5",
     "numpy>=1.26",
     "pillow>=10.0",
     "librosa>=0.10",
@@ -27,7 +30,12 @@ dependencies = [
     "scikit-learn>=1.4",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
+# Installed by default by `uv sync` (uv's native dev-group mechanism) — every
+# contributor and CI run gets the test/lint toolchain automatically. Previously
+# these were an [project.optional-dependencies] extra named "dev", which
+# `uv sync --dev` did NOT install (extras need `--extra dev`) — that silent miss
+# is why the test toolchain was absent on the 2026-10-17 resume.
 dev = [
     "pytest>=8.0",
     "pytest-cov>=4.1",
@@ -81,6 +89,7 @@ reportMissingTypeStubs = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --tb=short"
+pythonpath = ["src", "."]
 
 [tool.coverage.run]
 source = ["deepwatch"]

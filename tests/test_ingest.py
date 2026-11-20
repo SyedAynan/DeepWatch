@@ -1,8 +1,8 @@
 """Milestone-0 tests: hashing, preservation, and the audit log."""
+
 from __future__ import annotations
 
 import hashlib
-import sqlite3
 from pathlib import Path
 
 from deepwatch.db import audit
@@ -50,7 +50,5 @@ def test_audit_log_is_append_only(tmp_path: Path):
         "SELECT step FROM analysis_log WHERE run_id=? ORDER BY id", (run_id,)
     ).fetchall()
     assert [r[0] for r in rows] == ["ingest", "detect"]
-    run = conn.execute(
-        "SELECT status FROM analysis_run WHERE id=?", (run_id,)
-    ).fetchone()
+    run = conn.execute("SELECT status FROM analysis_run WHERE id=?", (run_id,)).fetchone()
     assert run[0] == "queued"

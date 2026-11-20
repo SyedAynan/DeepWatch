@@ -7,6 +7,7 @@ a directory of media into a manifest of (path, label) pairs that the eval
 harness consumes. Labels come from folder names (`real`/`fake` or per-method
 subfolders) or an optional CSV/JSON manifest if the dataset ships one.
 """
+
 from __future__ import annotations
 
 import csv
@@ -20,11 +21,31 @@ MEDIA_EXTS = {
 }
 
 # folder-name fragments that mark a sample as manipulated vs authentic
-FAKE_MARKERS = {"fake", "fakes", "manipulated", "deepfake", "deepfakes",
-                "face2face", "faceswap", "neuraltextures", "faceshifter",
-                "deepfakedetection", "forged", "synthetic", "generated"}
-REAL_MARKERS = {"real", "original", "originals", "bonafide", "bona_fide",
-                "authentic", "youtube", "pristine"}
+FAKE_MARKERS = {
+    "fake",
+    "fakes",
+    "manipulated",
+    "deepfake",
+    "deepfakes",
+    "face2face",
+    "faceswap",
+    "neuraltextures",
+    "faceshifter",
+    "deepfakedetection",
+    "forged",
+    "synthetic",
+    "generated",
+}
+REAL_MARKERS = {
+    "real",
+    "original",
+    "originals",
+    "bonafide",
+    "bona_fide",
+    "authentic",
+    "youtube",
+    "pristine",
+}
 
 
 def _label_from_parts(path: Path) -> str | None:
@@ -56,26 +77,37 @@ def scan(root: str | Path, exts: set[str] | None = None) -> list[dict]:
             for row in csv.DictReader(f):
                 p = root / row["path"]
                 lab = row.get("label", "").strip().lower()
-                samples.append({
-                    "path": str(p), "label": lab or _label_from_parts(p) or "unknown",
-                    "media_type": _media_type(p.suffix)})
+                samples.append(
+                    {
+                        "path": str(p),
+                        "label": lab or _label_from_parts(p) or "unknown",
+                        "media_type": _media_type(p.suffix),
+                    }
+                )
         return samples
     if json_manifest.is_file():
         data = json.loads(json_manifest.read_text(encoding="utf-8"))
         for row in data:
             p = root / row["path"]
             lab = str(row.get("label", "")).strip().lower()
-            samples.append({
-                "path": str(p), "label": lab or _label_from_parts(p) or "unknown",
-                "media_type": _media_type(p.suffix)})
+            samples.append(
+                {
+                    "path": str(p),
+                    "label": lab or _label_from_parts(p) or "unknown",
+                    "media_type": _media_type(p.suffix),
+                }
+            )
         return samples
 
     for p in sorted(root.rglob("*")):
         if p.is_file() and p.suffix.lower() in exts:
-            samples.append({
-                "path": str(p),
-                "label": _label_from_parts(p) or "unknown",
-                "media_type": _media_type(p.suffix)})
+            samples.append(
+                {
+                    "path": str(p),
+                    "label": _label_from_parts(p) or "unknown",
+                    "media_type": _media_type(p.suffix),
+                }
+            )
     return samples
 
 
